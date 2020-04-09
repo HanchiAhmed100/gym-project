@@ -7,9 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="./css/app.css" />
 </head>
-
 <body>
-
     <div class="slider">
         <div class="topnav" id="myTopnav">
             <a href="#home" class="active logo">
@@ -150,21 +148,22 @@
 
 
 
-  		var i = 0
+  		var i = 1
   		setInterval(function(){ 
   			$("#fadeImg").fadeOut(1500,function(){
-				var atr = ["ba1","ba2"]		
-				$("#fading-slide").addClass(atr[i])
+				var atr = ["ba1","ba2","ba3","ba4"]		
+
 	  			$("#fadeImg").fadeIn(1000);
+                console.log(i)
+				if( i == 4 ){
+					$("#fading-slide").removeClass(atr[i])
+                    i = 1;
+                    $("#fading-slide").addClass(atr[i])
 
-				if( i == 2 ){
-					$("#fading-slide").removeClass(atr[i-1])
-
-                    i = 0;
-                    
 				}else{
-                    $("#fading-slide").removeClass(atr[i-1])
-					i++; 	
+                    $("#fading-slide").removeClass(atr[i])
+					i++;
+                    $("#fading-slide").addClass(atr[i]) 	
 				}
   			});
 

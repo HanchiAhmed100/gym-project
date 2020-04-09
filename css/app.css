@@ -223,6 +223,13 @@ body{
 .ba2{
   background-image: url("../img/ba2.jpg");
 }
+.ba3{
+  background-image: url("../img/ba3.jpg");
+}
+.ba4{
+  background-image: url("../img/ba4.jpg");
+}
+
 
 .contoure{
   border: 2px solid ;
@@ -298,7 +305,7 @@ body{
   transition: 0.5s;
 
 }
-.myback:{
+.myback:hover{
   border-image-source:linear-gradient(135deg, #00b09b, #96c93d); 
   transition: 0.5s;
 
