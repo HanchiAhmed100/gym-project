@@ -298,7 +298,7 @@ body{
   transition: 0.5s;
 
 }
-.myback:{
+.myback:hover{
   border-image-source:linear-gradient(135deg, #00b09b, #96c93d); 
   transition: 0.5s;
 
