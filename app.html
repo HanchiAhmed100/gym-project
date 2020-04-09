@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/app.css" />
+</head>
+
+<body>
+
+    <div class="slider">
+        <div class="topnav" id="myTopnav">
+            <a href="#home" class="active logo">
+            </a>
+            <span class="navright">
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a href="#news">News</a>
+                <a href="#contact">Contact</a>
+                <a href="#about">About</a>
+            </span>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-6 light">
+                    <div class="padding-large margin-large">
+                        <p class="h1 gradient-text">Head Line</p><br />
+                        <p class="h3"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p><br /> <br />
+                        <p class="h5"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat neque a id ipsam quos iusto consectetur provident, animi officia excepturi harum iure repellat fugit! Dolor sunt quidem necessitatibus molestiae in.</p>
+                        <a class="btn-primary uk-padding"> READ MORE </a>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="padding-small ">
+                        <div id="fadeImg">
+                            <div id="fading-slide" class="background ba1">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4 myback back1 center ">
+            <div class="padding-small light">
+                <div class="padding-top-large">
+                    <p class="h2 primary-color">Dolor</p> <br />
+                    <p class="h5"> Omnis vitae, in at saepe aspernatur harum consequatur accusamus iste nostrum optio velit pariatur illum.</p> <br />
+                    <a class="btn-secondairy"> LEARN MORE </a>
+                </div> 
+            </div>
+        </div>
+        <div class="col-4 myback back2 center">
+            <div class="padding-small light">
+                <div class="padding-top-large">
+                    <p class="h2 gradient-text">Ipsum </p> <br />
+                    <p class="h5"> Voluptates dolorum totam earum nemo sapiente cupiditate exercitationem, deleniti eum itaque.  </p> <br />  
+                    <a class="btn-secondairy"> LEARN MORE </a>
+                </div> 
+            </div>    
+        </div>
+        <div class="col-4 myback back3 center">
+            <div class="padding-small light">
+                <div class="padding-top-large">
+                    <p class="h2 secondary-color">Lorem </p> <br />
+                    <p class="h5"> Deleniti eum itaque vitae, quas repellat a numquam, reprehenderit provident. Exercitationem ipsum. </p> <br /> 
+                    <a class="btn-secondairy"> LEARN MORE </a>
+                </div> 
+            </div>
+        </div>
+    </div>
+    
+    <div class="blackdiv light">
+        <div class="container">
+            <div class="row padding-large">
+                <div class="">
+                    <div class="col-12 contoure">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="padding">
+                                    <p class="h4"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur non aut quaerat doloremque harum nisi dicta ex beatae exercitationem ipsum maiores fugit molestias tempora.</p>
+                                </div>
+                            </div>    
+                            <div class="col-4">
+                                <div class="padding">
+                                    <a class="btn-primary uk-padding middle-height"> READ MORE </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>  
+            </div>        
+        </div>
+    </div>
+
+    
+    <div class="parallax"></div>
+
+    <div class="gradient light">
+        <div class="container">
+            <div class="row padding-large">
+                <div class="col-12 center">
+                    <div class="padding-large">
+                        <p class="h2">CHOOSE YOUR PROGRAM</p>
+                        <p class="h5">Our Crossfit experts can help you discover new training techniques and exercises that offer a dynamic and efficient full-body workout.</p>
+                    </div>
+                </div>    
+            </div>        
+        </div>
+    </div>
+    
+    <div class="row ">
+        <div class="col-6 back5 height border-bottom-right no-margin">
+            <div class="hov height ">
+            </div>
+        </div>
+        <div class="col-6 back6 height border-bottom-right no-margin">
+            <div class="hov height ">
+            </div>
+        </div>
+        
+        <div class="col-6 back7 height border-bottom-right no-margin">
+            <div class="hov height ">
+            </div>
+        </div>
+        <div class="col-6 back8 height border-bottom-right no-margin">
+            <div class="hov height ">
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script src="./js/app.js"></script>
+
+<script>
+
+    $(document).ready(function() {
+        var slideHeight = $(window).height() ;
+        $('.background').css('height',slideHeight/1.5);      
+
+
+
+  		var i = 0
+  		setInterval(function(){ 
+  			$("#fadeImg").fadeOut(1500,function(){
+				var atr = ["ba1","ba2"]		
+				$("#fading-slide").addClass(atr[i])
+	  			$("#fadeImg").fadeIn(1000);
+
+				if( i == 2 ){
+					$("#fading-slide").removeClass(atr[i-1])
+
+                    i = 0;
+                    
+				}else{
+                    $("#fading-slide").removeClass(atr[i-1])
+					i++; 	
+				}
+  			});
+
+  			
+		 }, 5000);
+
+
+    });
+
+
+
+</script>
+</html>
