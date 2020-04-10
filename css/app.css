@@ -5,6 +5,27 @@
   margin : 0px;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #151515; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background:  linear-gradient(135deg, #00b09b, #96c93d);
+  transition-duration: 1s
+}
+
 @font-face {
   font-family: myfont;
   src: url(../fonts/Inconsolata/Inconsolata-Regular.ttf);
@@ -149,7 +170,7 @@ body{
 .no-margin{
   margin: 0px;
   padding: 0px;
-  cursor: pointer
+  cursor: pointer;
 }
 .margin-top-large{
   margin: 40px
@@ -174,6 +195,9 @@ body{
 }
 .padding-large {
   padding : 30px
+}
+.padding-xlarge{
+  padding : 15%
 }
 .container {
   padding-left : 30px;
@@ -289,8 +313,61 @@ body{
   background-size: cover
 }
 
+.back9{
+  background-image: url("../img/9.jpg");
+  background-size: cover
+}
+.back10{
+  background-image: url("../img/10.jpg");
+  background-size: cover
+}
+.back11{
+  background-image: url("../img/11.jpg");
+  background-size: cover
+}
+.back12{
+  background-image: url("../img/12.jpg");
+  background-size: cover
+}
+.back13{
+  background-image: url("../img/13.jpg");
+  background-size: cover
+}
+.back14{
+  background-image: url("../img/14.jpg");
+  background-size: cover
+}
+
+
+.coach1{
+  background-image: url("../img/coach3.jpg");
+  background-size: cover
+}
+.coach2{
+  background-image: url("../img/coach1.jpg");
+  background-size: cover
+}
+.coach3{
+  background-image: url("../img/coach4.jpg");
+  background-size: cover
+}
+.coach4{
+  background-image: url("../img/coach2.jpg");
+  background-size: cover
+}
+
+
 .parallax {
   background-image: url("../img/bacck.jpg");
+  min-height: 300px; 
+  max-height: 3000px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.parallax-galery {
+  background-image: url("../img/77.jpg");
   min-height: 300px; 
   max-height: 3000px;
   background-attachment: fixed;
@@ -307,7 +384,6 @@ body{
 }
 .myback:hover{
   border-image-source:linear-gradient(135deg, #00b09b, #96c93d); 
-  transition: 0.5s;
 
 }
 .btn-primary {
@@ -352,24 +428,82 @@ body{
   vertical-align: middle;
 }
 .height{
-  height: 400px
+  height: 375px
 }
-.border-bottom-right{
-  border-bottom : 2px solid #000;
-  border-right : 2px solid #000;
+.border{
+  border: 1.5px solid #000;
 }
-.border-bottom-left{
-  border-bottom : 2px solid #000;
-  border-left : 2px solid #000;
-}
-.border-top-right{
-  border-top : 2px solid #000;
-  border-right : 2px solid #000;
-}
-.border-top-left{
-  border-top : 2px solid #000;
-  border-left : 2px solid #000;
+.hov{
+  background:linear-gradient(135deg#00b09b00,#96c93d00);
+  transition: 5s;
+
 }
 .hov:hover{
   background:linear-gradient(135deg, #00b09b99, #96c93d99); 
+}
+.hov-black:hover{
+  background:rgba(0,0,0,0.7) 
+}
+.show-on-hover{
+  display: none;
+}
+
+.hov:hover .show-on-hover{
+  display: block;
+}
+.mid{
+  position: relative;
+  top:50%;
+  bottom: 50%
+}
+/* 
+.inc{
+  border: 2px solid #fff;
+  border-radius : 100%;
+  padding : 15px;
+  width: 100px;
+  height: 100px;
+  color : white
+} */
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0px;
+  border: 1px solid;
+  border-image-source:linear-gradient(135deg, #00b09b, #96c93d); 
+  border-image-slice: 2;        
+  width: 500px;
+}
+
+/* The Close Button */
+.close {
+  color: #fff;
+  float: right;
+  font-size: 42px;
+  font-weight: bold;
+  margin-right: 5px
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
