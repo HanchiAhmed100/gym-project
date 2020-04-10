@@ -376,16 +376,16 @@ body{
   background-size: cover;
 } 
 .myback{
+  border-top : 4px solid;
   border-bottom: 4px solid;
   border-image-source:#000; 
   border-image-slice: 1; 
-  transition: 0.5s;
 
 }
 .myback:hover{
   border-image-source:linear-gradient(135deg, #00b09b, #96c93d); 
-
 }
+
 .btn-primary {
   display: inline-block;
   font-size: 14px;
@@ -448,6 +448,11 @@ body{
   display: none;
 }
 
+
+.hov-black:hover .show-on-hover{
+  display: block;
+}
+
 .hov:hover .show-on-hover{
   display: block;
 }
@@ -486,9 +491,9 @@ body{
   background-color: #fefefe;
   margin: auto;
   padding: 0px;
-  border: 1px solid;
+  border: 2px solid;
   border-image-source:linear-gradient(135deg, #00b09b, #96c93d); 
-  border-image-slice: 2;        
+  border-image-slice: 1;        
   width: 500px;
 }
 
@@ -507,3 +512,30 @@ body{
   text-decoration: none;
   cursor: pointer;
 }
+.max-margin{
+  margin-top:45%
+}
+
+.mytable tr td{
+  padding : 15px;
+  border-bottom: 1px solid;
+
+  border-image-source:linear-gradient(135deg, #00b09b, #96c93d); 
+  border-image-slice: 1;   
+}
+.mytable {
+  border-collapse: unset;
+  overflow-x:auto;
+}
+.light-black{
+  background-color: rgba(0,0,0,0.5);
+}
+.dark {
+  color: #000
+}
+.white-div{
+    background-color: #96c93d
+}
+td:hover{background-color:linear-gradient(135deg, #00b09b, #96c93d); }
+
+
