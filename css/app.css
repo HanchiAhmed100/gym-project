@@ -194,7 +194,7 @@ body{
   margin : 40px
 }
 .padding-large {
-  padding : 30px
+  padding : 35px
 }
 .padding-xlarge{
   padding : 15%
@@ -518,12 +518,14 @@ body{
 
 .mytable tr td{
   padding : 15px;
-  border-bottom: 1px solid;
-
+  border-bottom: 2px solid;
   border-image-source:linear-gradient(135deg, #00b09b, #96c93d); 
   border-image-slice: 1;   
+  overflow-x:auto;
+
 }
 .mytable {
+  /* background-color:rgba(255,255,255,0.1); */
   border-collapse: unset;
   overflow-x:auto;
 }
@@ -533,9 +535,49 @@ body{
 .dark {
   color: #000
 }
-.white-div{
-    background-color: #96c93d
+.white-green-div{
+  background : linear-gradient(0deg, #f8f8f8, #96c93d );
 }
-td:hover{background-color:linear-gradient(135deg, #00b09b, #96c93d); }
+.white-div{
+  background: #f8f8f8
+}
+tr:hover{background-color:rgba(255,255,255,0.1);}
+
+.ligtern{
+  background-color:rgba(255,255,255,0.05);
+}
+
+.mycover{
+  background: url("../img/cc.jpg");
+  min-height: 300px; 
+  max-height: 3000px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;  
+}
 
 
+.overflow {
+  overflow-x:auto;
+
+}
+
+@media screen and (max-width: 600px) {
+  *{
+    text-align: center
+  }
+  .padding-large {
+    padding: 10px
+  }
+  .margin-large{
+    margin :10px
+  }
+  .padding{
+    padding: 5px
+  }
+  .only-desktop{
+    display: none
+  }
+
+}
