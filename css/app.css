@@ -140,7 +140,7 @@ a{
 }
 
 @media screen and (max-width: 600px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {position: fixed;}
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -590,6 +590,15 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
   }
   .left {
     text-align: left;
+  }
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0px;
+    border: 2px solid;
+    border-image-source:linear-gradient(135deg, #00b09b, #96c93d); 
+    border-image-slice: 1;        
+    width: 300px;
   }
 }
 .left {
