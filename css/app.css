@@ -3,6 +3,7 @@
   box-sizing: border-box;
   font-family: 'myfont' ;
   margin : 0px;
+  cursor: auto
 }
 
 /* width */
@@ -32,11 +33,18 @@
 }
 html {
   margin: 0px;
-  padding: 0px
+  padding: 0px;
+  scroll-behavior: smooth;
+
 }
 
 body{
   margin: 0px
+}
+a{
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none
 }
 .row::after {
   content: "";
@@ -86,17 +94,13 @@ body{
   .col-12 {width: 100%;}
 }
 /* navbar css */
-
 .topnav {
-  padding-left:5%;
   overflow: hidden;
-  background-color:transparent;
-  box-sizing: border-box;
-  z-index: 10; 
-  box-shadow: 0 1px 2px rgba(16,16,17,.02), 0 3.4px 8px rgba(16,16,17,.007), 0 12px 30px rgba(16,16,17,.003);
-  top: 0px;
-  background: transparent;
-  height: 65px;
+  background-color: #151515;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 2px solid #000
 }
 
 .topnav a {
@@ -104,59 +108,40 @@ body{
   display: block;
   color: #fff;
   text-align: center;
-  padding: 8px 24px;
+  padding: 14px 16px;
   text-decoration: none;
-  font-size: 22px;
-  line-height: 50px
+  font-size: 24px;
 
 }
-.logo a {
-  padding-bottom :0px;
-  margin-bottom: 0px
 
-}
 .topnav a:hover {
-  background-color: rgba(16,16,17,.01);
-  color: #3f3d56;
-}
-
-.navright{
-  padding-right:5%;
-  float: right;
+  background-color: rgba(0,0,0,0.3);
+  color: #00b09b;
 }
 
 .topnav a.active {
-  color: #63A2FF;
-  font-weight: bold
+  background-color: #00b09b;
+  color: white;
 }
 
-.topnav . {
+.topnav .icon {
   display: none;
 }
-.topnav .logo {
-  padding-top: 0px;
-  padding-bottom: 0px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  width: 150px;
-  max-width: 150px;
+.logo{
+  font-weight: bolder
 }
-.center {
-  text-align: center;
-}
-
 
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {display: none;}
-  .topnav a. {
-    float: right;
+  .topnav a.icon {
+    float: left;
     display: block;
   }
 }
 
 @media screen and (max-width: 600px) {
   .topnav.responsive {position: relative;}
-  .topnav.responsive . {
+  .topnav.responsive .icon {
     position: absolute;
     right: 0;
     top: 0;
@@ -166,6 +151,13 @@ body{
     display: block;
     text-align: left;
   }
+  .navright{
+    float: left;
+  }
+}
+.navright{
+  float: right;
+  margin-right: 35px
 }
 .no-margin{
   margin: 0px;
@@ -624,7 +616,6 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
   cursor: pointer;
   color : #4267b2
 }
-
 .links-instagram:hover{
   cursor: pointer;
   color :   #C13584
@@ -636,6 +627,10 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
 .padding-left-right{
   padding-right: 15px;
   padding-left:15px
+}
+.margin-right-left{
+  margin-right:15px;
+  margin-left:15px
 }
 .footer{
   background: #000;
@@ -656,7 +651,6 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
 .totop:hover{
   color:#00b09b;
   animation: upup 2s infinite;
-
 }
 @keyframes upup{
   0%{
@@ -689,3 +683,4 @@ textarea, input{
   color : #fff
   
 }
+
