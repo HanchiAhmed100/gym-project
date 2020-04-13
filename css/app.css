@@ -63,7 +63,7 @@ a{
 }
 
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 820px) {
   /* For tablets: */
   .col-s-1 {width: 8.33%;}
   .col-s-2 {width: 16.66%;}
@@ -78,7 +78,7 @@ a{
   .col-s-11 {width: 91.66%;}
   .col-s-12 {width: 100%;}
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 820px) {
   /* For desktop: */
   .col-1 {width: 8.33%;}
   .col-2 {width: 16.66%;}
@@ -93,6 +93,21 @@ a{
   .col-11 {width: 91.66%;}
   .col-12 {width: 100%;}
 }
+
+@media only screen and (min-width: 960px) {
+  .col-m-4{
+    width: 33.33%;
+  }
+}
+.all-heigh{
+  height: 350px
+}
+@media only screen and (max-width: 900px) {
+  .all-heigh{
+    height: 400px
+  }
+}
+
 /* navbar css */
 .topnav {
   overflow: hidden;
@@ -131,7 +146,7 @@ a{
   font-weight: bolder
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 820px) {
   .topnav a:not(:first-child) {display: none;}
   .topnav a.icon {
     float: left;
@@ -139,7 +154,7 @@ a{
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 820px) {
   .topnav.responsive {position: fixed;}
   .topnav.responsive .icon {
     position: absolute;
@@ -153,6 +168,9 @@ a{
   }
   .navright{
     float: left;
+  }
+  .height-large{
+    height: auto
   }
 }
 .navright{
@@ -171,7 +189,10 @@ a{
   margin: 20px
 }
 .padding-top-large{
-  padding: 40px
+  padding-top:8%;
+  padding-bottom: 8%;
+  padding-left: 5%;
+  padding-right: 5%
 }
 .margin-small {
   margin : 10px
@@ -191,6 +212,8 @@ a{
 .padding-large {
   padding : 35px
 }
+
+
 .padding-xlarge{
   padding : 15%
 }
@@ -591,6 +614,24 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
   .left {
     text-align: left;
   }
+  .container{
+    padding: 2px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .padding-large {
+    padding: 20px
+  }
+  .margin-large{
+    margin :20px
+  }
+  ul{
+    list-style: none
+  }
+}
+
+
+@media screen and (max-width: 720px) {
   .modal-content {
     background-color: #fefefe;
     margin: auto;
