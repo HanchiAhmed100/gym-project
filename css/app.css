@@ -64,7 +64,6 @@ a{
 
 
 @media only screen and (min-width: 820px) {
-  /* For tablets: */
   .col-s-1 {width: 8.33%;}
   .col-s-2 {width: 16.66%;}
   .col-s-3 {width: 25%;}
@@ -80,7 +79,6 @@ a{
 
 }
 @media only screen and (min-width: 820px) {
-  /* For desktop: */
   .col-1 {width: 8.33%;}
   .col-2 {width: 16.66%;}
   .col-3 {width: 25%;}
@@ -100,7 +98,6 @@ a{
   .col-m-4{
     width: 33.33%;
   }
-
 }
 .all-heigh{
   height: 350px
@@ -293,6 +290,9 @@ a{
 .blackdiv{
   background-color: #151515;
 }
+.black{
+  color: #000
+}
 .gradient {
   background : linear-gradient(135deg, #00b09b, #96c93d);
 }
@@ -365,6 +365,11 @@ a{
 .back14{
   background-image: url("../img/14.jpg");
   background-size: cover
+}
+.loginback{
+  background-image: url("../img/loginback.jpg");
+  background-size: cover
+
 }
 
 
@@ -551,7 +556,7 @@ a{
   cursor: pointer;
 }
 .max-margin{
-  margin-top:45%
+  margin-top:120px;
 }
 
 .mytable tr td{
@@ -659,6 +664,7 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
 .line{
   line-height: 30px
 }
+
 .links{
   cursor: pointer;
 }
@@ -728,9 +734,19 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
   border-radius: 2px;
   padding-top: 13px;
   padding-bottom: 13px;
-  padding-left:20px;
+  padding-left:17px;
   caret-color: #fff;
   font-size: 18px
+}
+.button{
+  width: 100%;
+  background-color: rgba(0,0,0,0.1);
+  border : 1px solid #00b09b;
+  border-radius: 2px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  caret-color: #fff;
+  font-size: 18px;
 }
 .textarea{
   background-color: rgba(0,0,0,0.1);
@@ -750,8 +766,17 @@ textarea:focus, input:focus{
   outline: none;
   
 }
-textarea, t{
+textarea, input{
   color : #fff
   
 }
 
+.bottom{
+  position: absolute;
+  bottom: 5px;
+  text-align: center
+}
+.login{
+  padding-top: 5%;
+  padding-bottom: 5%
+}
