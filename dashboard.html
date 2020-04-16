@@ -7,8 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="./css/app.css" />
     <link rel="stylesheet" href="./fonts/font-awesome/css/font-awesome.css">
+    <style>
+    .notif{
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        padding : 15px;
+        width: 300px;
+        color : #fff;
+        border-radius: 5px;
+        background-color: rgba(0,0,0,0.8);
+        border-bottom: 2px solid;
+        border-image-source:linear-gradient(135deg, #00b09b, #96c93d); 
+        border-image-slice: 1;  
+    }
+</style>
 </head>
-<body>
+<body onload="LoadUsers()">
     <div class="slider" id="accueil">
         <div class="topnav" id="myTopnav">
             <a href="#news" class=" logo"> <span class="gradient-text">MY</span> <i class="fa fa-globe" ></i> <span class="gradient-text">GYM</span></a>
@@ -28,7 +43,7 @@
         </div>
         <div class="container padding-top-large-px">
             <div class="row">
-                <div class="col-6">
+                <div class="col-4">
                     <div class="padding-large ligtern light">
                         <p class="h5 center line"> Add new user </p> <hr />
                         <p class="padding-bottom-x-small">Full Name : </p>
@@ -52,49 +67,126 @@
                         <button class="btn-primary uk-padding " onclick="AddUser()"> Valider </button>
                     </div>
                 </div>
+                
+                <div class="col-8">
+                    <div class="row">
+                        <di v class="col-12">
+                            <div class="padding-large ligtern light" >
+                                <div id="verif-div">
+                                    <span id="name"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="padding-large ligtern light">
+                                <div class="overflow">
+                                    <div id="load"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
+    <div id="demo">
 
-    
+    </div>
+
+    <div class="notif" id="notif">
+    </div>
+
     <div class="col-12 padding-small footer light center">
         <p>Copyright © 2020 All rights reserved | Made with love <i class="fa fa-heartbeat " ></i> </p>
     </div>
 </body>
 
-<script type="text/javascript" src="./js/jquery.js"></script>
+<!-- <script type="text/javascript" src="./js/jquery.js"></script> -->
 <script src="./js/app.js"></script>
 
 <script>
-    function AddUser(){
-        var fullname = $("#fullname").val()
-        var email = $("#email").val()
-        var sexe = $("#sexe").val()
-        var age = $("#age").val()
-        var password = $("#password").val()
-        var verif = $("#verif").val()
 
-        console.log(sexe)
+    function AddUser(){
+        var fullname =  document.querySelector("#fullname").value 
+        var email = document.querySelector("#email").value
+        var sexe = document.querySelector("#sexe").value
+        var age =  document.querySelector("#age").value 
+        var password = document.querySelector("#password").value
+        var verif = document.querySelector("#verif").value
         if( fullname != "" && email != "" && sexe != "" && age != "" && password != "" && verif != ""){
             if( !validateEmail(email) ) {
-                $("#error").html(" * invalid email! ")
+                document.querySelector("#error").innerHTML = " * invalid email ! "
             }else{
                 if(password == verif){
-                    $("#error").html("")
-                    $.post("service/AddUser.php",{ fullname:fullname, email : email, sexe : sexe,age : age, password : password},function(a,b){console.log("a : ",a ," b : ",b) });
+                    document.querySelector("#error").innerHTML = " "
+                    var xhttp = new XMLHttpRequest();
+                        xhttp.onreadystatechange = function() {
+                            if (this.readyState == 4 && this.status == 200) {
+                                document.querySelector("#fullname").value = document.querySelector("#email").value = document.querySelector("#sexe").value = document.querySelector("#password").value = document.querySelector("#verif").value =  ""
+                                document.querySelector("#age").value = 0
+                                document.querySelector("#notif").style.display = "block"
+                                document.querySelector("#notif").innerHTML = " Success "
+                                load_users()
+                                setTimeout(function(){
+                                    document.querySelector("#notif").style.display = "none"
+                                }, 5000);
+                            }else{
+                                document.querySelector("#notif").innerHTML = " Error "
+                                setTimeout(function(){ 
+                                    document.querySelector("#notif").style.display = "none"
+                                }, 5000);
+                            }
+                        };
+                        xhttp.open("POST", "./service/AddUser.php", true);
+                        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        var jsonData = { fullname : fullname ,email : email ,sexe : sexe ,age : age,password : password };
+                        var formattedJsonData = JSON.stringify( jsonData );
+                        str = "fullname="+fullname+"&email="+email+"&sexe="+sexe+"&age="+age+"&password="+password
+                        xhttp.send(str);
                 }else{
-                    $("#error").html(" * Passwords don't match ! ")
+                    document.querySelector("#error").innerHTML = " * Passwords don't match ! "
                 } 
             }
- 
         }else{
-            $("#error").html(" * All fields are required")
+            document.querySelector("#error").innerHTML = " * All fields are required "
         }
     }
     function validateEmail($email) {
         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
         return emailReg.test( $email );
     }
+    function LoadUsers() {
+        document.querySelector("#notif").style.display = "none"
+        document.querySelector("#verif-div , #hid").style.display = "none"
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("load").innerHTML = this.responseText
+            }
+        };
+        xhttp.open("GET", "./service/LoadUsers.php", true);
+        xhttp.send();
+    }
+    function deleteUser(id, name) {
+        document.querySelector("#verif-div").style.display = "inline"
+        document.querySelector("#name").innerHTML = '<i class="fa fa-tarsh"> </i> Are you sure to delete <span class="secondary-color">'+name+'</span> ! <i class="fa fa-check right margin-right-left" onclick="deleteConfirmed('+id+')"> </i> <i class="fa fa-close right margin-right-left" onclick="close()">'
+    }
+    function close() {
+    }
+    function deleteConfirmed(id){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.querySelector("#name").innerHTML = 'User deleted'
+
+            }
+        };
+        xhttp.open("GET", "./service/LoadUsers.php?id="+id+"", true);
+        xhttp.send();        
+    }
+
+
 
 </script>
 </html>

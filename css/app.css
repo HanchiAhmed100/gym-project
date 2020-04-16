@@ -727,6 +727,8 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
   background-color: rgba(0,0,0,0.8);
   cursor: pointer;
 }
+
+
 .totop:hover{
   color:#00b09b;
   animation: upup 2s infinite;
@@ -821,4 +823,7 @@ option:checked, option:hover {
 }
 .fa{
   cursor: pointer;
+}
+.right{
+  float: right
 }
