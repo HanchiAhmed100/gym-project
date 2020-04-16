@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Gym</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/app.css" />
+    <link rel="stylesheet" href="./fonts/font-awesome/css/font-awesome.css">
+</head>
+<body>
+    <div class="slider" id="accueil">
+        <div class="topnav" id="myTopnav">
+            <a href="#news" class=" logo"> <span class="gradient-text">MY</span> <i class="fa fa-globe" ></i> <span class="gradient-text">GYM</span></a>
+            <span class="navright">
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a href="#accueil">Accueil</a>
+                <a href="#galery">Galery</a>
+                <a href="#team">Team</a>
+                <a href="#planning">Planning</a>
+                <a href="#offres">Offres</a>
+                <a href="#contact">Contact</a>
+                <a href="./login.html" class="links h5"><i class="fa fa-user-circle-o"></i></a> <br />
+
+            </span>
+        </div>
+        <div class="container padding-top-large-px">
+            <div class="row">
+                <div class="col-6">
+                    <div class="padding-large ligtern light">
+                        <p class="h5 center line"> Add new user </p> <hr />
+                        <p class="padding-bottom-x-small">Full Name : </p>
+                        <input type="text" placeholder="Full name" class="input" id="fullname"> 
+                        <p class="padding-bottom-x-small">Email :</p>
+                        <input type="text" placeholder="Email" class="input" id="email"> 
+                        <p class="padding-bottom-x-small">Sexe :</p>
+                        <div class="myselect">
+                            <select id="sexe" class="input padding">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <p class="padding-bottom-x-small">Age :</p>
+                        <input type="number" placeholder="Age" class="input" id="age"> 
+                        <p class="padding-bottom-x-small">Password :</p>
+                        <input type="text" placeholder="Password" class="input" id="password"> 
+                        <p class="padding-bottom-x-small">Verif password :</p>
+                        <input type="text" placeholder="Verif Password" class="input" id="verif"> 
+                        <p class="padding-bottom-x-small red " id="error"></p>
+                        <button class="btn-primary uk-padding " onclick="AddUser()"> Valider </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="col-12 padding-small footer light center">
+        <p>Copyright © 2020 All rights reserved | Made with love <i class="fa fa-heartbeat " ></i> </p>
+    </div>
+</body>
+
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script src="./js/app.js"></script>
+
+<script>
+    function AddUser(){
+        var fullname = $("#fullname").val()
+        var email = $("#email").val()
+        var sexe = $("#sexe").val()
+        var age = $("#age").val()
+        var password = $("#password").val()
+        var verif = $("#verif").val()
+
+        console.log(sexe)
+        if( fullname != "" && email != "" && sexe != "" && age != "" && password != "" && verif != ""){
+            if( !validateEmail(email) ) {
+                $("#error").html(" * invalid email! ")
+            }else{
+                if(password == verif){
+                    $("#error").html("")
+                    $.post("service/AddUser.php",{ fullname:fullname, email : email, sexe : sexe,age : age, password : password},function(a,b){console.log("a : ",a ," b : ",b) });
+                }else{
+                    $("#error").html(" * Passwords don't match ! ")
+                } 
+            }
+ 
+        }else{
+            $("#error").html(" * All fields are required")
+        }
+    }
+    function validateEmail($email) {
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        return emailReg.test( $email );
+    }
+
+</script>
+</html>

@@ -1,5 +1,5 @@
 <?php 
-Class connexion{
+class connexion{
 	private $host = 'localhost';
 	private $database = 'gym';
 	private $name = 'root';

@@ -19,11 +19,11 @@
     </style>
 </head>
 <body>
-    <div class="row">
-        <div class="col-6 blackdiv login">
-            <div class="padding-large ligtern light ">
+    <div class="row blackdiv" id="mydiv">
+        <div class="col-6 login" >
+            <div class="padding-large ligtern light  ">
 
-                <p class="h1 gradient-text center padding-large">My Gym </p>
+                <p class="h1 center padding-large"><a href="./app.html"> <span class="gradient-text">MY</span> <i class="fa fa-globe" ></i> <span class="gradient-text">GYM</span> </a> </p>
                 <p class="h5 center padding-bottom-small line"> Lorem, ipsum dolor sit amet, Doloremque quos ipsum, ipsa molestiae adipisci optio facere nihil distinctio tenetur.</p>
                 <div class="row">
                     <div class="col-12">
@@ -35,13 +35,13 @@
                         <p class="links black" onclick="change()" id="mytext">Show password</p>
                     </div>
                     <div class="col-4"></div>
-                    <div class="col-4 block no-margin padding-left-right">
+                    <div class="col-8 block no-margin padding-left-right">
                         <a class="btn-secondairy"> Valider </a>
                     </div>
                 </div>
             </div>   
 
-            <p class="h5 black center ">Copyright © 2020 All rights reserved </p>
+            <p class="h5 black center padding-small ">Copyright © 2020 All rights reserved </p>
         </div>
         
         <div class="col-6 loginback all-height center ">
@@ -54,7 +54,7 @@
 
 <script>
     $(document).ready(function() {
-        var slideHeight = $(window).height() ;
+        var slideHeight = $("#mydiv").height() ;
         $('.all-height').css('height',slideHeight+50);      
     })
     

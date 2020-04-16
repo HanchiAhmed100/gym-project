@@ -7,7 +7,7 @@
           	$connect = $db->connect();
           	$this->conn = $connect;
       	}
-
-
- 	}
+	 }
+	 
+	 
 ?>

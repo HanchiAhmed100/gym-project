@@ -27,6 +27,17 @@
   transition-duration: 1s
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 @font-face {
   font-family: myfont;
   src: url(../fonts/Inconsolata/Inconsolata-Regular.ttf);
@@ -204,6 +215,7 @@ a{
 .padding-small {
   padding : 15px
 }
+
 .margin {
   margin : 20px
 }
@@ -217,6 +229,13 @@ a{
   padding : 35px
 }
 
+.padding-bottom-small{
+  padding-bottom: 25px
+}
+.padding-bottom-x-small{
+  padding-bottom: 10px;
+  padding-top: 10px
+}
 
 .padding-xlarge{
   padding : 15%
@@ -671,9 +690,6 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
 .links:hover {
   color:#00b09b;
 }
-.padding-bottom-small{
-  padding-bottom: 25px
-}
 
 .links-facebook:hover{
   cursor: pointer;
@@ -762,21 +778,47 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
   margin-right: 25%;
   margin-left : 25%
 }
-textarea:focus, input:focus{
+textarea:focus, input:focus ,select:focus{
   outline: none;
   
 }
 textarea, input{
+  color : #fff  
+}
+select{
+  color: #fff
+}
+select > option {
+  background:#151515;
+  padding-top: 10px;
+  padding-bottom: 10px ;
+  color: #fff;
+  height: 15px
+}
+option{
+  height: 15px
+}
+select:hover > option:hover {
+  background:#96c93d;
   color : #fff
-  
+}
+.myselect option:hover{
+  background: #C13584
 }
 
+option:checked, option:hover {
+  color: white;
+  background: #488f8f repeat url("data:image/gif;base64,R0lGO...");
+}
 .bottom{
   position: absolute;
   bottom: 5px;
   text-align: center
 }
 .login{
-  padding-top: 5%;
+  padding-top: 4%;
   padding-bottom: 5%
+}
+.fa{
+  cursor: pointer;
 }
