@@ -8,7 +8,7 @@
         <td>FULL NAME</td>
         <td> SEXE </td>
         <td> AGE </td>
-        <td> DATE </td>
+        <td> MEMBER SINCE </td>
         <td> ACTIONS </td>
     </tr>';
     while ($u = $user->fetch()) {
@@ -19,7 +19,7 @@
                 <td> '.$u['sexe'].' </td>
                 <td> '.$u['age'].' </td>
                 <td> '.$u['created_at'].' </td>
-                <td> <i class="fa fa-trash" onclick="deleteUser('.$u['id'].',\' '.$u['fullname'].' \' )"></i></td>
+                <td> <i class="fa fa-trash" onclick="deleteUser('.$u['id'].',\' '.$u['fullname'].' \' )"></i> &nbsp &nbsp <a href="client.html?id='.$u['id'].'&name='.$u['fullname'].' "><i class="fa fa-pencil"> </i></a></td>
             </tr>
         ';
     }

@@ -26,17 +26,12 @@
 <body onload="LoadUsers()">
     <div class="slider" id="accueil">
         <div class="topnav" id="myTopnav">
-            <a href="#news" class=" logo"> <span class="gradient-text">MY</span> <i class="fa fa-globe" ></i> <span class="gradient-text">GYM</span></a>
+            <a href="./app.html" class=" logo"> <span class="gradient-text">MY</span> <i class="fa fa-globe" ></i> <span class="gradient-text">GYM</span></a>
             <span class="navright">
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i class="fa fa-bars"></i>
                 </a>
-                <a href="#accueil">Accueil</a>
-                <a href="#galery">Galery</a>
-                <a href="#team">Team</a>
-                <a href="#planning">Planning</a>
-                <a href="#offres">Offres</a>
-                <a href="#contact">Contact</a>
+                <a href="./dashboard.html">Members</a>
                 <a href="./login.html" class="links h5"><i class="fa fa-user-circle-o"></i></a> <br />
 
             </span>
@@ -45,7 +40,7 @@
             <div class="row">
                 <div class="col-4">
                     <div class="padding-large ligtern light">
-                        <p class="h5 center line"> Add new user </p> <hr />
+                        <p class="h5 center line"> Add new user </p> <hr /> <br />
                         <p class="padding-bottom-x-small">Full Name : </p>
                         <input type="text" placeholder="Full name" class="input" id="fullname"> 
                         <p class="padding-bottom-x-small">Email :</p>
@@ -79,7 +74,7 @@
                         </div>
                         <div class="col-12">
                             <div class="padding-large ligtern light">
-                                <div class="overflow">
+                                <div class="overflow table-heigt">
                                     <div id="load"></div>
                                 </div>
                             </div>
@@ -127,7 +122,7 @@
                                 document.querySelector("#age").value = 0
                                 document.querySelector("#notif").style.display = "block"
                                 document.querySelector("#notif").innerHTML = " Success "
-                                load_users()
+                                LoadUsers()
                                 setTimeout(function(){
                                     document.querySelector("#notif").style.display = "none"
                                 }, 5000);
@@ -170,20 +165,26 @@
     }
     function deleteUser(id, name) {
         document.querySelector("#verif-div").style.display = "inline"
-        document.querySelector("#name").innerHTML = '<i class="fa fa-tarsh"> </i> Are you sure to delete <span class="secondary-color">'+name+'</span> ! <i class="fa fa-check right margin-right-left" onclick="deleteConfirmed('+id+')"> </i> <i class="fa fa-close right margin-right-left" onclick="close()">'
+        document.querySelector("#name").innerHTML = '<i class="fa fa-tarsh"> </i> Are you sure to delete : <span class="secondary-color">'+name+'</span> ! <i onclick="close_msg()" class="fa fa-close right margin-right-left links" > </i> <i  onclick="deleteConfirmed('+id+')" class="fa fa-check right margin-right-left links"> </i></div> '
     }
-    function close() {
+    function close_msg() {
+        console.log("close called")
+        document.querySelector("#verif-div").style.display = "none"
     }
     function deleteConfirmed(id){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+                LoadUsers()
                 document.querySelector("#name").innerHTML = 'User deleted'
 
             }
         };
-        xhttp.open("GET", "./service/LoadUsers.php?id="+id+"", true);
+        xhttp.open("GET", "./service/DeleteUser.php?id="+id+"", true);
         xhttp.send();        
+    }
+    function userInfo(id) {
+        
     }
 
 

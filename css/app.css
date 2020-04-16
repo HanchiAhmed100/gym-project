@@ -697,7 +697,7 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
 }
 .links-instagram:hover{
   cursor: pointer;
-  color :   #C13584
+  color :   #C13584;
 }
 .links-youtube:hover{
   cursor: pointer;
@@ -826,4 +826,12 @@ option:checked, option:hover {
 }
 .right{
   float: right
+}
+.table-heigt{
+  height: 500px;
+  overflow-x: auto
+}
+.small-img{
+  width: 125px;
+  height: 125px
 }
