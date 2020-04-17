@@ -23,7 +23,7 @@
     }
 </style>
 </head>
-<body onload="LoadUsers()">
+<body onload="LoadUsers('active')">
     <div class="slider" id="accueil">
         <div class="topnav" id="myTopnav">
             <a href="./app.html" class=" logo"> <span class="gradient-text">MY</span> <i class="fa fa-globe" ></i> <span class="gradient-text">GYM</span></a>
@@ -74,6 +74,7 @@
                         </div>
                         <div class="col-12">
                             <div class="padding-large ligtern light">
+                                <span class="h5" id="client-type"> Active Clients  : </span> <span id="client-type-button"><span class="h5 right secondary-color  links" onclick="inactive('No')"> Show inactive clients</span></span><hr \>
                                 <div class="overflow table-heigt">
                                     <div id="load"></div>
                                 </div>
@@ -122,7 +123,7 @@
                                 document.querySelector("#age").value = 0
                                 document.querySelector("#notif").style.display = "block"
                                 document.querySelector("#notif").innerHTML = " Success "
-                                LoadUsers()
+                                LoadUsers('active')
                                 setTimeout(function(){
                                     document.querySelector("#notif").style.display = "none"
                                 }, 5000);
@@ -151,7 +152,7 @@
         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
         return emailReg.test( $email );
     }
-    function LoadUsers() {
+    function LoadUsers(type) {
         document.querySelector("#notif").style.display = "none"
         document.querySelector("#verif-div , #hid").style.display = "none"
         var xhttp = new XMLHttpRequest();
@@ -160,31 +161,42 @@
                 document.getElementById("load").innerHTML = this.responseText
             }
         };
-        xhttp.open("GET", "./service/LoadUsers.php", true);
+        xhttp.open("GET", "./service/LoadUsers.php?type="+type, true);
         xhttp.send();
     }
-    function deleteUser(id, name) {
+
+    function deleteUser(id, name,type) {
         document.querySelector("#verif-div").style.display = "inline"
-        document.querySelector("#name").innerHTML = '<i class="fa fa-tarsh"> </i> Are you sure to delete : <span class="secondary-color">'+name+'</span> ! <i onclick="close_msg()" class="fa fa-close right margin-right-left links" > </i> <i  onclick="deleteConfirmed('+id+')" class="fa fa-check right margin-right-left links"> </i></div> '
+        if(type == "active"){
+            document.querySelector("#name").innerHTML = '<i class="fa fa-tarsh"> </i> Are you sure to set  : <span class="secondary-color">'+name+'</span> to Inactive ! <i onclick="close_msg()" class="fa fa-close right margin-right-left links" > </i> <i  onclick="deleteConfirmed('+id+',\''+type+'\')" class="fa fa-check right margin-right-left links"> </i></div> '
+        }else{
+            document.querySelector("#name").innerHTML = '<i class="fa fa-tarsh"> </i> Are you sure to set  : <span class="secondary-color">'+name+'</span> to Active ! <i onclick="close_msg()" class="fa fa-close right margin-right-left links" > </i> <i  onclick="deleteConfirmed('+id+',\''+type+'\')" class="fa fa-check right margin-right-left links"> </i></div> '
+        }
     }
     function close_msg() {
         console.log("close called")
         document.querySelector("#verif-div").style.display = "none"
     }
-    function deleteConfirmed(id){
+    function deleteConfirmed(id,mtype){
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                LoadUsers()
+                LoadUsers('No')
                 document.querySelector("#name").innerHTML = 'User deleted'
-
             }
         };
-        xhttp.open("GET", "./service/DeleteUser.php?id="+id+"", true);
+        xhttp.open("GET", "./service/DeleteUser.php?id="+id+"&type="+mtype, true);
         xhttp.send();        
     }
-    function userInfo(id) {
-        
+    function inactive(type) {
+        document.getElementById("client-type").innerHTML = 'Inactive clients : '
+        LoadUsers(type)
+        document.getElementById("client-type-button").innerHTML = '<span class="h5 links right secondary-color "  onclick="setactive(\'active\')"> Show active clients</span>'
+    }
+    function setactive(type) {
+        document.getElementById("client-type").innerHTML = 'Active clients : '
+        LoadUsers(type)
+        document.getElementById("client-type-button").innerHTML = '<span class="h5 links right secondary-color " onclick="inactive(\'No\')"> Show inactive clients</span>'
     }
 
 

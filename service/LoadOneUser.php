@@ -3,6 +3,7 @@
     
     $id = $_GET['id'];
     $users = new users();	
+
     $user = $users->load_one_user($id);
 
     while ($u = $user->fetch()) {
@@ -21,10 +22,35 @@
             </div>
         ';
     }
-    echo '
-        <hr \><br \>
-        Paiments
-    ';
+    $info = $users->load_user_paiments($id);
 
+    if($info->rowCount() != 0){
+        echo'     
+        <hr \><br \>
+        <p class="h5">Paiments :</p>                        
+        <table class="margin mytable h5">
+        <tr>
+            <td> MONTH </td>
+            <td> OFFER </td>
+            <td> PAIMENT DATE </td>
+            <td> ACTIONS</td>
+
+        </tr>';
+        while ($i = $info->fetch()) {
+
+            echo'                                        
+                <tr>
+                    <td> '.$i['month'].' </td>
+                    <td> '.$i['offer'].' </td>
+                    <td> '.$i['p_date'].' </td>
+
+                    <td> <i class="fa fa-trash" ></i> &nbsp &nbsp <i class="fa fa-pencil"> </i></td>
+                </tr>
+            ';
+        }
+        echo'</table> ';
+    }else{
+        echo ' <hr \><br \> <p class="h5">No paiment yet ! </p>';
+    }
 
 ?>
