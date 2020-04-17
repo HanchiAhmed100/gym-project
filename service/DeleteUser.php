@@ -3,8 +3,7 @@
 
 	$id = $_GET['id'];
     $type = $_GET['type'];
-
     $users = new users();	
-    $users->delete_user($id,$type)
+    $users->delete_user($id,$type);
 
 ?>

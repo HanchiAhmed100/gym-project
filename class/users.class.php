@@ -54,9 +54,9 @@
         } 
         public function delete_user($id,$type){
             if($type == 'active'){
-                $active = 1;
-            }else{
                 $active = 0;
+            }else{
+                $active = 1;
             }
             $stmt = $this->conn->prepare("UPDATE users set active = :active WHERE id = :id ");
             $stmt -> bindParam(':id',$id);            

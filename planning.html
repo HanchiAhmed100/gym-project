@@ -39,44 +39,59 @@
         </div>
         <div class="container padding-top-large-px">
             <div class="row">
-                <div class="col-4">
+                <div class="col-12">
                     <div class="padding-large ligtern light">
-                        <p class="h5 center line"> Add paiment </p> <hr /> <br />
-                        <p class="padding-bottom-x-small">Full Name : </p>
-                        <input type="text" placeholder="Full name" class="input" id="fullname" disabled> 
+                        <p class="h5 center line"> Add class </p> <hr /> <br />
+                        <p class="padding-bottom-x-small">Class Name : </p>
+                        <input type="text" placeholder="class" class="input" id="" > 
                         <p class="padding-bottom-x-small">Month :</p>
-                        <input type="month" placeholder="" class="input" id="month"> 
-                        <p class="padding-bottom-x-small">Offer :</p>
                         <div class="myselect">
-                            <select id="offer" class="input padding">
-                                <option value="NORMAL">NORMAL</option>
-                                <option value="PREMIUM">PREMIUM</option>
-                                <option value="PRO">PRO</option>
+                            <select id="day" class="input padding">
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
+
                             </select>
                         </div>
-                        <button class="btn-primary uk-padding " onclick="AddPaiment()"> Valider </button>
+                        <p class="padding-bottom-x-small">Hour :</p>
+                        <div class="myselect">
+                            <select id="hours" class="input padding">
+                                <option value="08:00 - 10:00">08:00 - 10:00</option>
+                                <option value="10:00 - 12:00">10:00 - 12:00</option>
+                                <option value="12:00 - 14:00">12:00 - 14:00</option>
+                                <option value="14:00 - 16:00">14:00 - 16:00</option>
+                                <option value="16:00 - 18:00">16:00 - 18:00</option>
+                                <option value="18:00 - 20:00">18:00 - 20:00</option>
+                            </select>
+                        </div>
+                        <p class="padding-bottom-x-small">Gym :</p>
+                        <div class="myselect">
+                            <select id="gym" class="input padding">
+                                <option value="1">Gym 1 </option>
+                                <option value="2">Gym 2 </option>
+                            </select>
+                        </div>
+                        <button class="btn-primary uk-padding " onclick="AddClass()"> Valider </button>
 
                     </div>
                 </div>
-                
-                <div class="col-8">
-                    <div class="row">
-                        <di v class="col-12">
-                            <div class="padding-large ligtern light" >
-                                <div id="verif-div">
-                                    <span id="name"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="padding-large ligtern light">
-                                <div class="overflow table-heigt">
-                                    <div id="load"></div>
-                                </div>
-                            </div>
+                <div class="col-12">
+                    <div class="padding-large ligtern light" >
+                        <div id="verif-div">
+                            <span id="name"></span>
                         </div>
                     </div>
-
+                </div>
+                <div class="col-12">
+                    <div class="padding-large ligtern light">
+                        <div class="overflow table-heigt">
+                            <div id="load"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -108,7 +123,7 @@
                 document.querySelector("#fullname").value = name
             }
         };
-        xhttp.open("GET", "./service/LoadOneUser.php?id="+id+"", true);
+        xhttp.open("GET", "./service/GetPlanning.php", true);
         xhttp.send();
     }
 
