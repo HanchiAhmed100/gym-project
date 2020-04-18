@@ -36,12 +36,11 @@
                 <a href="./planning.html">Planning</a>
                 <a href="./dashboard.html">Members</a>
                 <a href="./login.html" class="links h5"><i class="fa fa-user-circle-o"></i></a> <br />
-
             </span>
         </div>
         <div class="container padding-top-large-px">
             <div class="row">
-                <div class="col-4">
+                <div class="col-4 padding-top-large-px">
                     <div class="padding-large ligtern light">
                         <p class="h5 center line"> Add paiment </p> <hr /> <br />
                         <p class="padding-bottom-x-small">Full Name : </p>
@@ -56,19 +55,20 @@
                                 <option value="PRO">PRO</option>
                             </select>
                         </div>
-                        <button class="btn-primary uk-padding " onclick="AddPaiment()"> Valider </button>
-
+                        <button class="btn-primary uk-padding " onclick="VerifPaiment()"> Valider </button>
+                        <br /> <br />
+                        <div id="verif-div">
+                            <div class="padding ligtern light">
+                                <span id="verif"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="col-8">
                     <div class="row">
-                        <di v class="col-12">
-                            <div class="padding-large ligtern light" >
-                                <div id="verif-div">
-                                    <span id="name"></span>
-                                </div>
-                            </div>
+                        <div class="col-12" >
+
                         </div>
                         <div class="col-12">
                             <div class="padding-large ligtern light">
@@ -97,12 +97,8 @@
     const urlParams = new URLSearchParams(queryString);
     const id = urlParams.get('id')
     const name = urlParams.get('name')
-    function validateEmail($email) {
-        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-        return emailReg.test( $email );
-    }
+    document.querySelector("#verif-div").style.display = "none"
     function LoadUsers() {
-
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -113,27 +109,34 @@
         xhttp.open("GET", "./service/LoadOneUser.php?id="+id+"", true);
         xhttp.send();
     }
-
-    function AddPaiment() {
-        var fullname =  document.querySelector("#fullname").value
-        var month =  document.querySelector("#month").value
-        var offer =  document.querySelector("#offer").value
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.querySelector("#month").value = ""  
-                document.querySelector("#offer").value ="" 
-                LoadUsers() 
-            }
+    function VerifPaiment(){
+        if(document.querySelector("#month").value != ""){
+            document.querySelector("#verif-div").style.display = "block"
+            document.querySelector("#verif").innerHTML = '<p class="h5">Confirm payment   <i onclick="close_paiment_msg()" class="fa fa-close right margin-right-left links" > </i> <i  onclick="AddPaiment()" class="fa fa-check right margin-right-left links"> </i> </p>'
         }
-        xhttp.open("POST", "./service/AddPaiment.php", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        str = "id="+id+"&month="+month+"&offer="+offer
-        xhttp.send(str);
-        
     }
-
-
-
+    function close_paiment_msg() {
+        document.querySelector("#verif-div").style.display = "none"
+    }
+    function AddPaiment() {
+        if(document.querySelector("#month").value != ""){
+            close_paiment_msg()
+            var fullname =  document.querySelector("#fullname").value
+            var month =  document.querySelector("#month").value
+            var offer =  document.querySelector("#offer").value
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.querySelector("#month").value = ""  
+                    document.querySelector("#offer").value ="" 
+                    LoadUsers() 
+                }
+            }
+            xhttp.open("POST", "./service/AddPaiment.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            str = "id="+id+"&month="+month+"&offer="+offer
+            xhttp.send(str);        
+        }
+    }
 </script>
 </html>
