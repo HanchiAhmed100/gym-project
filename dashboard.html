@@ -31,6 +31,8 @@
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i class="fa fa-bars"></i>
                 </a>
+                <a href="./team.html">Team</a>
+                <a href="./Galery.html">Galery</a>
                 <a href="./planning.html">Planning</a>
                 <a href="./dashboard.html">Members</a>
                 <a href="./login.html" class="links h5"><i class="fa fa-user-circle-o"></i></a> <br />
@@ -39,44 +41,68 @@
         </div>
         <div class="container padding-top-large-px">
             <div class="row">
-                <div class="col-4">
+                <div class="col-4 padding-top-large-px">
                     <div class="padding-large ligtern light">
-                        <p class="h5 center line"> Add new user </p> <hr /> <br />
-                        <p class="padding-bottom-x-small">Full Name : </p>
-                        <input type="text" placeholder="Full name" class="input" id="fullname"> 
-                        <p class="padding-bottom-x-small">Email :</p>
-                        <input type="text" placeholder="Email" class="input" id="email"> 
-                        <p class="padding-bottom-x-small">Sexe :</p>
-                        <div class="myselect">
-                            <select id="sexe" class="input padding">
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
+                        <div class="menu">
+                            <p class="padding-bottom-x-small">Actions :</p>
+                            <div class="myselect" >
+                                <select id="menu" class="input padding" onchange="selectChange()">
+                                    <option value="search">Search</option>
+                                    <option value="add">Add</option>
+                                </select>
+                            </div>
                         </div>
-                        <p class="padding-bottom-x-small">Age :</p>
-                        <input type="number" placeholder="Age" class="input" id="age"> 
-                        <p class="padding-bottom-x-small">Password :</p>
-                        <input type="text" placeholder="Password" class="input" id="password"> 
-                        <p class="padding-bottom-x-small">Verif password :</p>
-                        <input type="text" placeholder="Verif Password" class="input" id="verif"> 
-                        <p class="padding-bottom-x-small red " id="error"></p>
-                        <button class="btn-primary uk-padding " onclick="AddUser()"> Valider </button>
+                        <div id="search">
+                            <p class="h5 center line padding"> Search client </p> <hr /> <br />
+                            <p class="padding-bottom-x-small"> Full Name : </p>
+                            <input type="text" placeholder="Full name" class="input" id="searchname"> 
+                            <button class="btn-secondairy uk-padding " onclick="SearchClient()"> Valider </button>
+                            <button class="btn-secondairy uk-padding " onclick="Reset()"> Reset </button>
+
+                            <br />
+                            <div id="search-result"></div>
+                        </div>
+                        <div id="add">
+                            <p class="h5 center line padding"> Add new Client </p> <hr /> <br />
+                            <p class="padding-bottom-x-small">Full Name : </p>
+                            <input type="text" placeholder="Full name" class="input" id="fullname"> 
+                            <p class="padding-bottom-x-small">Email :</p>
+                            <input type="text" placeholder="Email" class="input" id="email"> 
+                            <p class="padding-bottom-x-small">Sexe :</p>
+                            <div class="myselect">
+                                <select id="sexe" class="input padding">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <p class="padding-bottom-x-small">Age :</p>
+                            <input type="number" placeholder="Age" class="input" id="age"> 
+                            <p class="padding-bottom-x-small">Password :</p>
+                            <input type="text" placeholder="Password" class="input" id="password"> 
+                            <p class="padding-bottom-x-small">Verif password :</p>
+                            <input type="text" placeholder="Verif Password" class="input" id="verif"> 
+                            <p class="padding-bottom-x-small red " id="error"></p>
+                            <button class="btn-secondairy uk-padding " onclick="AddUser()"> Valider </button>
+                        </div>
+
                     </div>
                 </div>
                 
                 <div class="col-8">
                     <div class="row">
-                        <di v class="col-12">
+                        <div class="col-12" id="verif-div">
                             <div class="padding-large ligtern light" >
-                                <div id="verif-div">
+                                <div >
                                     <span id="name"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="padding-large ligtern light">
-                                <span class="h5" id="client-type"> Active Clients  : </span> <span id="client-type-button"><span class="h5 right secondary-color  links" onclick="inactive('No')"> Show inactive clients</span></span><hr \>
-                                <div class="overflow table-heigt">
+                                <div class="padding">
+                                    <span class="h5" id="client-type"> Active Clients  : </span> <span id="client-type-button"><span class="h5 right secondary-color  links" onclick="inactive('No')"> Show inactive clients</span></span><br />
+                                </div>
+                                <div class="overflow ligtern  table-heigt">
                                     <div id="load"></div>
                                 </div>
                             </div>
@@ -103,6 +129,8 @@
 <script src="./js/app.js"></script>
 
 <script>
+    document.querySelector("#search").style.display = "block"
+    document.querySelector("#add").style.display = "none"
 
     function AddUser(){
         var fullname =  document.querySelector("#fullname").value 
@@ -198,6 +226,33 @@
         document.getElementById("client-type").innerHTML = 'Active clients : '
         LoadUsers(type)
         document.getElementById("client-type-button").innerHTML = '<span class="h5 links right secondary-color " onclick="inactive(\'No\')"> Show inactive clients</span>'
+    }
+    function selectChange(){
+        console.log(document.querySelector("#menu").value )
+        if(document.querySelector("#menu").value != "add"){
+            document.querySelector("#add").style.display = "none"
+            document.querySelector("#search").style.display = "block"
+        }else{
+            document.querySelector("#search").style.display = "none"
+            document.querySelector("#add").style.display = "block"
+        } 
+    }
+    function SearchClient() {
+        var serach = document.querySelector("#searchname").value
+        if( document.querySelector("#searchname").value != ""){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("search-result").innerHTML = this.responseText
+                }
+            };
+            xhttp.open("GET", "./service/SerachClient.php?name="+serach, true);
+            xhttp.send(); 
+        }
+    }
+    function Reset() {
+        document.querySelector("#searchname").value = ""
+        document.getElementById("search-result").innerHTML = ""
     }
 
 

@@ -4,8 +4,9 @@
     $users = new users();	
     $user = $users->load_users($type);
     echo'    
-    <table class="margin mytable h5">
-    <tr>
+    <br />
+    <table class="margin mytable h5 ">
+    <tr class="full-widht">
         <td>FULL NAME</td>
         <td> SEXE </td>
         <td> AGE </td>

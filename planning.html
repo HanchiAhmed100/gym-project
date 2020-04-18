@@ -23,7 +23,7 @@
     }
 </style>
 </head>
-<body onload="LoadUsers()">
+<body onload="LoadPlannig()">
     <div class="slider" id="accueil">
         <div class="topnav" id="myTopnav">
             <a href="./app.html" class=" logo"> <span class="gradient-text">MY</span> <i class="fa fa-globe" ></i> <span class="gradient-text">GYM</span></a>
@@ -31,6 +31,8 @@
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i class="fa fa-bars"></i>
                 </a>
+                <a href="./team.html">Team</a>
+                <a href="./Galery.html">Galery</a>
                 <a href="./planning.html">Planning</a>
                 <a href="./dashboard.html">Members</a>
                 <a href="./login.html" class="links h5"><i class="fa fa-user-circle-o"></i></a> <br />
@@ -43,8 +45,8 @@
                     <div class="padding-large ligtern light">
                         <p class="h5 center line"> Add class </p> <hr /> <br />
                         <p class="padding-bottom-x-small">Class Name : </p>
-                        <input type="text" placeholder="class" class="input" id="" > 
-                        <p class="padding-bottom-x-small">Month :</p>
+                        <input type="text" placeholder="class" class="input" id="class" > 
+                        <p class="padding-bottom-x-small">Day :</p>
                         <div class="myselect">
                             <select id="day" class="input padding">
                                 <option value="Monday">Monday</option>
@@ -60,12 +62,12 @@
                         <p class="padding-bottom-x-small">Hour :</p>
                         <div class="myselect">
                             <select id="hours" class="input padding">
-                                <option value="08:00 - 10:00">08:00 - 10:00</option>
-                                <option value="10:00 - 12:00">10:00 - 12:00</option>
-                                <option value="12:00 - 14:00">12:00 - 14:00</option>
-                                <option value="14:00 - 16:00">14:00 - 16:00</option>
-                                <option value="16:00 - 18:00">16:00 - 18:00</option>
-                                <option value="18:00 - 20:00">18:00 - 20:00</option>
+                                <option value="hour_08">08:00 - 10:00</option>
+                                <option value="hour_10">10:00 - 12:00</option>
+                                <option value="hour_12">12:00 - 14:00</option>
+                                <option value="hour_14">14:00 - 16:00</option>
+                                <option value="hour_16">16:00 - 18:00</option>
+                                <option value="hour_18">18:00 - 20:00</option>
                             </select>
                         </div>
                         <p class="padding-bottom-x-small">Gym :</p>
@@ -96,7 +98,9 @@
             </div>
         </div>
     </div>
+    <div id="demo">
 
+    </div>
     <div class="col-12 padding-small footer light center">
         <p>Copyright © 2020 All rights reserved | Made with love <i class="fa fa-heartbeat " ></i> </p>
     </div>
@@ -106,47 +110,37 @@
 <script src="./js/app.js"></script>
 
 <script>
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const id = urlParams.get('id')
-    const name = urlParams.get('name')
-    function validateEmail($email) {
-        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-        return emailReg.test( $email );
-    }
-    function LoadUsers() {
-
+    function LoadPlannig() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById("load").innerHTML = this.responseText
-                document.querySelector("#fullname").value = name
             }
         };
         xhttp.open("GET", "./service/GetPlanning.php", true);
         xhttp.send();
     }
+    function AddClass() {
+        var classe =  document.querySelector("#class").value
+        var day =  document.querySelector("#day").value
+        var hour =  document.querySelector("#hours").value
+        var gym =  document.querySelector("#gym").value
 
-    function AddPaiment() {
-        var fullname =  document.querySelector("#fullname").value
-        var month =  document.querySelector("#month").value
-        var offer =  document.querySelector("#offer").value
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.querySelector("#month").value = ""  
-                document.querySelector("#offer").value ="" 
-                LoadUsers() 
+                document.querySelector("#class").value = "" 
+                document.querySelector("#day").value = "Monday"
+                document.querySelector("#hours").value = "hour_08"
+                document.querySelector("#gym").value = "1"
+                document.querySelector("#verif-div ").innerHTML = "Class was added "
+                LoadPlannig() 
             }
         }
-        xhttp.open("POST", "./service/AddPaiment.php", true);
+        xhttp.open("POST", "./service/setPlanning.php", true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        str = "id="+id+"&month="+month+"&offer="+offer
+        str = "class="+classe+"&day="+day+"&hour="+hour+"&gym="+gym
         xhttp.send(str);
-        
     }
-
-
-
 </script>
 </html>

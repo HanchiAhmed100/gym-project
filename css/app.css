@@ -835,3 +835,6 @@ option:checked, option:hover {
   width: 125px;
   height: 125px
 }
+.full-widht{
+  width: 100%
+}

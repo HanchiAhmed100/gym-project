@@ -78,6 +78,13 @@
             $stmt ->execute();
             return $stmt;
         }
+        public function Search_users($name){
+            $search = "%".$name."%";
+            $stmt = $this->conn->prepare("SELECT * FROM users WHERE LOWER( users.fullname ) LIKE  :search ");
+            $stmt -> bindParam(':search',$search);            
+            $stmt ->execute();
+            return $stmt;
+        }
     }
 	 
 ?>
