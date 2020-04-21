@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Gym</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/app.css" />
+    <link rel="stylesheet" href="./fonts/font-awesome/css/font-awesome.css">
+    <style>
+    .notif{
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        padding : 15px;
+        width: 300px;
+        color : #fff;
+        border-radius: 5px;
+        background-color: rgba(0,0,0,0.8);
+        border-bottom: 2px solid;
+        border-image-source:linear-gradient(135deg, #00b09b, #96c93d); 
+        border-image-slice: 1;  
+    }
+    .hiddenFileInput > input{
+        height: 100%;
+        width: 100;
+        opacity: 0;
+        cursor: pointer;
+    }
+    .hiddenFileInput{
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+        overflow: hidden;
+        
+        /*for the background, optional*/
+        background: center center no-repeat;
+        background-size: contain;
+        background-image:  url("./img/photo.png");
+    }
+    .medium-img{
+        width: 300px;
+        height:300px;
+    }
+
+</style>
+</head>
+<body onload="LoadPlannig()">
+    <div class="slider" id="accueil">
+        <div class="topnav" id="myTopnav">
+            <a href="./app.html" class=" logo"> <span class="gradient-text">MY</span> <i class="fa fa-globe" ></i> <span class="gradient-text">GYM</span></a>
+            <span class="navright">
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a href="./team.html">Team</a>
+                <a href="./Galery.html">Galery</a>
+                <a href="./planning.html">Planning</a>
+                <a href="./dashboard.html">Members</a>
+                <a href="./login.html" class="links h5"><i class="fa fa-user-circle-o"></i></a> <br />
+
+            </span>
+        </div>
+        <div class="container padding-top-large-px">
+            <div class="row">
+                <div class="col-6">
+                    <div class="padding-large  light">
+                        <form id="ajax-upload" action="./service/UploadCoachPic.php" method="post" enctype="multipart/form-data">
+                            <p class="h5 center line"> Add coach </p> <hr /> <br />
+                            <p class="padding-bottom-x-small">Full Name : </p>
+                            <input type="text" placeholder="class" name="name" class="input"  id="name" > 
+                            <p class="padding-bottom-x-small">Specialty : </p>
+                            <input type="text" placeholder="speciality" name="speciality" class="input" id="speciality" > 
+                            <p class="padding-bottom-x-small">Picture : </p>
+                            <span class="hiddenFileInput">
+                                <input type="file" name="fileToUpload" id="file"/>
+                            </span>
+                            <p class="padding-bottom-x-small"></p>  
+                            <button type="submit" class="btn-secondairy uk-padding "> Valider </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-6 lightern light">
+                        <div class="row">
+                            <div class="class="overflow table-heigt"">
+                                <div id="load"></div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="col-12" id="verif-div">
+                    <div class="padding-large ligtern light" >
+                        <div>
+                            <span id="name"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 padding-small footer light center">
+        <p>Copyright © 2020 All rights reserved | Made with love <i class="fa fa-heartbeat " ></i> </p>
+    </div>
+</body>
+
+<!-- <script type="text/javascript" src="./js/jquery.js"></script> -->
+<script src="./js/app.js"></script>
+
+<script>
+    function LoadPlannig() {
+        document.querySelector("#verif-div").style.display = "none"
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("load").innerHTML = this.responseText
+            }
+        };
+        xhttp.open("GET", "./service/LoadTeamPicDashboard.php", true);
+        xhttp.send();
+    }
+    // function AddCoach() {
+    //     var classe =  document.querySelector("#class").value
+    //     var day =  document.querySelector("#day").value
+    //     var hour =  document.querySelector("#hours").value
+    //     var gym =  document.querySelector("#gym").value
+
+    //     var xhttp = new XMLHttpRequest();
+    //     xhttp.onreadystatechange = function() {
+    //         if (this.readyState == 4 && this.status == 200) {
+    //             document.querySelector("#verif-div").style.display = "block"
+    //             document.querySelector("#class").value = "" 
+    //             document.querySelector("#day").value = "Monday"
+    //             document.querySelector("#hours").value = "hour_08"
+    //             document.querySelector("#gym").value = "1"
+    //             LoadPlannig() 
+    //         }
+    //     }
+    //     xhttp.open("POST", "./service/setPlanning.php", true);
+    //     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //     str = "class="+classe+"&day="+day+"&hour="+hour+"&gym="+gym
+    //     xhttp.send(str);
+    // }
+    document.addEventListener("DOMContentLoaded", function(){
+        document.getElementById('ajax-upload').addEventListener("submit", function(e){
+            e.preventDefault()
+            document.querySelector("#verif-div").style.display = "block"
+            var form = e.target
+            var data = new FormData(form)
+            var request = new XMLHttpRequest()
+            request.onreadystatechange = function(){
+                document.querySelector("#name").innerHTML = request.responseText
+                LoadPlannig()
+            }
+            request.open(form.method, form.action)
+            request.send(data)
+        })
+    })
+
+</script>
+</html>

@@ -237,6 +237,7 @@ a{
   padding-top: 10px
 }
 
+
 .padding-xlarge{
   padding : 15%
 }
@@ -836,5 +837,5 @@ option:checked, option:hover {
   height: 125px
 }
 .full-widht{
-  width: 100%
+  width: 100%;
 }
