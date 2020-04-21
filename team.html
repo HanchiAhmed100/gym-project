@@ -45,7 +45,7 @@
 
 </style>
 </head>
-<body onload="LoadPlannig()">
+<body onload="LoadCoach()">
     <div class="slider" id="accueil">
         <div class="topnav" id="myTopnav">
             <a href="./app.html" class=" logo"> <span class="gradient-text">MY</span> <i class="fa fa-globe" ></i> <span class="gradient-text">GYM</span></a>
@@ -58,31 +58,48 @@
                 <a href="./planning.html">Planning</a>
                 <a href="./dashboard.html">Members</a>
                 <a href="./login.html" class="links h5"><i class="fa fa-user-circle-o"></i></a> <br />
-
             </span>
         </div>
         <div class="container padding-top-large-px">
-            <div class="row">
+            <div class="row ">
                 <div class="col-6">
-                    <div class="padding-large  light">
-                        <form id="ajax-upload" action="./service/UploadCoachPic.php" method="post" enctype="multipart/form-data">
-                            <p class="h5 center line"> Add coach </p> <hr /> <br />
-                            <p class="padding-bottom-x-small">Full Name : </p>
-                            <input type="text" placeholder="class" name="name" class="input"  id="name" > 
-                            <p class="padding-bottom-x-small">Specialty : </p>
-                            <input type="text" placeholder="speciality" name="speciality" class="input" id="speciality" > 
-                            <p class="padding-bottom-x-small">Picture : </p>
-                            <span class="hiddenFileInput">
-                                <input type="file" name="fileToUpload" id="file"/>
-                            </span>
-                            <p class="padding-bottom-x-small"></p>  
-                            <button type="submit" class="btn-secondairy uk-padding "> Valider </button>
-                        </form>
+                    <div class="padding-large ligtern  light">
+                        <div id="add-form">
+                            <form id="ajax-upload" action="./service/UploadCoachPic.php" method="post" enctype="multipart/form-data">
+                                <p class="h5 center line"> Add coach </p> <hr /> <br />
+                                <p class="padding-bottom-x-small">Full Name : </p>
+                                <input type="text" placeholder="class" name="name" class="input"  id="name" > 
+                                <p class="padding-bottom-x-small">Specialty : </p>
+                                <input type="text" placeholder="speciality" name="speciality" class="input" id="speciality" > 
+                                <p class="padding-bottom-x-small">Picture : </p>
+                                <span class="hiddenFileInput">
+                                    <input type="file" name="fileToUpload" id="file"/>
+                                </span>
+                                <p class="padding-bottom-x-small"></p>  
+                                <button type="submit" class="btn-secondairy uk-padding "> Valider </button>
+                            </form>
+                        </div>
+                        <div id="update-form">
+                            <form id="pic-upload" action="./service/UpdateCoachPic.php" method="post" enctype="multipart/form-data">
+                                <p class="h5 center line"> Update coach </p> <hr /> <br />
+                                <p class="padding-bottom-x-small">Full Name : </p>
+                                <input type="text" placeholder="class" name="name" class="input"  id="Upname" > 
+                                <p class="padding-bottom-x-small">Specialty : </p>
+                                <input type="text" placeholder="speciality" name="speciality" class="input" id="Upspeciality" > 
+                                <p class="padding-bottom-x-small">Picture : </p>
+                                <span class="hiddenFileInput">
+                                    <input type="file" name="fileToUpload" id="fileudate"/>
+                                </span>
+                                <input type="hidden" id="id" name="id" value="">
+                                <p class="padding-bottom-x-small"></p>  
+                                <button type="submit" class="btn-secondairy uk-padding "> Valider </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <div class="col-6 lightern light">
                         <div class="row">
-                            <div class="class="overflow table-heigt"">
+                            <div class="overflow  ligtern table-heigt">
                                 <div id="load"></div>
                             </div>
                         </div>
@@ -90,15 +107,16 @@
                 <div class="col-12" id="verif-div">
                     <div class="padding-large ligtern light" >
                         <div>
-                            <span id="name"></span>
+                            <span id="msg"></span>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+    <div id="demo">
 
+    </div>
     <div class="col-12 padding-small footer light center">
         <p>Copyright © 2020 All rights reserved | Made with love <i class="fa fa-heartbeat " ></i> </p>
     </div>
@@ -108,8 +126,8 @@
 <script src="./js/app.js"></script>
 
 <script>
-    function LoadPlannig() {
-        document.querySelector("#verif-div").style.display = "none"
+    function LoadCoach() {
+        document.querySelector("#update-form").style.display = "none"
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -119,43 +137,85 @@
         xhttp.open("GET", "./service/LoadTeamPicDashboard.php", true);
         xhttp.send();
     }
-    // function AddCoach() {
-    //     var classe =  document.querySelector("#class").value
-    //     var day =  document.querySelector("#day").value
-    //     var hour =  document.querySelector("#hours").value
-    //     var gym =  document.querySelector("#gym").value
-
-    //     var xhttp = new XMLHttpRequest();
-    //     xhttp.onreadystatechange = function() {
-    //         if (this.readyState == 4 && this.status == 200) {
-    //             document.querySelector("#verif-div").style.display = "block"
-    //             document.querySelector("#class").value = "" 
-    //             document.querySelector("#day").value = "Monday"
-    //             document.querySelector("#hours").value = "hour_08"
-    //             document.querySelector("#gym").value = "1"
-    //             LoadPlannig() 
-    //         }
-    //     }
-    //     xhttp.open("POST", "./service/setPlanning.php", true);
-    //     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    //     str = "class="+classe+"&day="+day+"&hour="+hour+"&gym="+gym
-    //     xhttp.send(str);
-    // }
+    function Update(id,name,spe){
+        document.querySelector("#add-form").style.display = "none"
+        document.querySelector("#update-form").style.display = "block"
+        document.querySelector("#id").value = id
+        document.querySelector("#Upspeciality").value = spe
+        document.querySelector("#Upname").value = name
+    }
+    function DeleteCoach(id){
+        document.querySelector("#verif-div").style.display = "block"
+        document.querySelector("#msg").innerHTML = '<p class="h5">Confirm Delete Coach   <i onclick="close_coach_msg()" class="fa fa-close right margin-right-left links" > </i> <i  onclick="DeleteCoachConfirmed('+id+')" class="fa fa-check right margin-right-left links"> </i> </p>'
+    }  
+    function DeleteCoachConfirmed(id){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("msg").innerHTML = '<p class="h5">Coach deleted</h5>'
+                LoadCoach()
+            }
+        }
+        xhttp.open("GET", "./service/DeleteCoach.php?id="+id, true);
+        xhttp.send();
+    }
+    function close_coach_msg(){
+        document.querySelector("#msg").innerHTML = ""
+    }
     document.addEventListener("DOMContentLoaded", function(){
+
         document.getElementById('ajax-upload').addEventListener("submit", function(e){
             e.preventDefault()
             document.querySelector("#verif-div").style.display = "block"
             var form = e.target
             var data = new FormData(form)
             var request = new XMLHttpRequest()
-            request.onreadystatechange = function(){
-                document.querySelector("#name").innerHTML = request.responseText
-                LoadPlannig()
+            if( document.querySelector("#file").value != "" ){
+                if( document.querySelector("#speciality").value != "" && document.querySelector("#name").value != ""  ){
+                    request.onreadystatechange = function(){
+                        document.querySelector("#msg").innerHTML = '<p class="h5">Coach added</p>'
+                        document.querySelector("#speciality").value = ""
+                        document.querySelector("#name").value = ""
+                        LoadCoach()
+                    }
+                    request.open(form.method, form.action)
+                    request.send(data)
+                }else{
+                    document.querySelector("#msg").innerHTML = '<p class="h5">* Name and specialty fields are required !</p>'
+                }
+            }else{
+                document.querySelector("#msg").innerHTML = '<p class="h5">* You must upload a pic !</p>'
             }
-            request.open(form.method, form.action)
-            request.send(data)
         })
     })
-
+    document.addEventListener("DOMContentLoaded", function(){
+        document.getElementById('pic-upload').addEventListener("submit", function(e){
+            e.preventDefault()
+            document.querySelector("#verif-div").style.display = "block"
+            console.log("update")
+            var form = e.target
+            var data = new FormData(form)
+            var request = new XMLHttpRequest()
+            if( document.querySelector("#fileudate").value != "" ){
+                if( document.querySelector("#Upname").value != "" && document.querySelector("#Upspeciality").value != ""  ){
+                    request.onreadystatechange = function(){
+                        document.querySelector("#msg").innerHTML = request.responseText
+                        document.querySelector("#id").value = ""
+                        document.querySelector("#Upspeciality").value = ""
+                        document.querySelector("#Upname").value = ""
+                        document.querySelector("#add-upload").style.display = "block"
+                        document.querySelector("#update-form").style.display = "none"
+                        LoadCoach()
+                    }
+                    request.open(form.method, form.action)
+                    request.send(data)
+                }else{
+                    document.querySelector("#msg").innerHTML = '<p class="h5">* Name and specialty fields are required !</p>'
+                }
+            }else{
+                document.querySelector("#msg").innerHTML = '<p class="h5">* You must upload a pic !</p>'
+            }
+        })
+    })
 </script>
 </html>

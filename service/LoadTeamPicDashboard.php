@@ -15,7 +15,7 @@
             <tr>
                 <td> '.$t['fullname'].' </td>
                 <td> '.$t['speciality'].' </td>
-                <td> <a href="'.$t['pic'].'"> <i class="fa fa-picture-o"></i></a>  <i class="fa fa-pencil"></i> <i class="fa fa-trash"></i> </td>
+                <td> <a href="'.$t['pic'].'"> <i class="fa fa-picture-o"></i></a>  <i class="fa fa-pencil" onClick="Update('.$t['id'].',\''.$t['fullname'].'\',\''.$t['speciality'].'\')"></i> <i class="fa fa-trash" OnClick="DeleteCoach('.$t['id'].')"></i> </td>
             </tr>
         ';
     }
