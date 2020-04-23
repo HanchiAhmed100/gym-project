@@ -129,6 +129,28 @@
 <script src="./js/app.js"></script>
 
 <script>
+
+    function VerifLogin(){
+        if(localStorage.getItem("fullname") == "" || localStorage.getItem("token") == "" || localStorage.getItem("id") == ""){
+            window.location.replace("./login.html");
+        }else{
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    if(this.responseText != "verif"){
+                        window.location.replace("./login.html");
+                    }
+                }
+            };
+            xhttp.open("POST", "./service/VerifToken.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            str = "id="+localStorage.getItem("id")+"&token="+localStorage.getItem("token")
+            xhttp.send(str);
+        }
+    }
+ 
+
+
     document.querySelector("#search").style.display = "block"
     document.querySelector("#add").style.display = "none"
 
@@ -165,8 +187,6 @@
                         };
                         xhttp.open("POST", "./service/AddUser.php", true);
                         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                        var jsonData = { fullname : fullname ,email : email ,sexe : sexe ,age : age,password : password };
-                        var formattedJsonData = JSON.stringify( jsonData );
                         str = "fullname="+fullname+"&email="+email+"&sexe="+sexe+"&age="+age+"&password="+password
                         xhttp.send(str);
                 }else{
@@ -182,6 +202,7 @@
         return emailReg.test( $email );
     }
     function LoadUsers(type) {
+        VerifLogin()
         document.querySelector("#notif").style.display = "none"
         document.querySelector("#verif-div , #hid").style.display = "none"
         var xhttp = new XMLHttpRequest();

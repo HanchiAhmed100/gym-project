@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Gym</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/app.css" />
+    <link rel="stylesheet" href="./fonts/font-awesome/css/font-awesome.css">
+    <style>
+    .notif{
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        padding : 15px;
+        width: 300px;
+        color : #fff;
+        border-radius: 5px;
+        background-color: rgba(0,0,0,0.8);
+        border-bottom: 2px solid;
+        border-image-source:linear-gradient(135deg, #00b09b, #96c93d); 
+        border-image-slice: 1;  
+    }
+    .hiddenFileInput > input{
+        height: 100%;
+        width: 100;
+        opacity: 0;
+        cursor: pointer;
+    }
+    .hiddenFileInput{
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+        overflow: hidden;
+        
+        /*for the background, optional*/
+        background: center center no-repeat;
+        background-size: contain;
+        background-image:  url("./img/photo.png");
+    }
+    .medium-img{
+        width: 300px;
+        height:300px;
+    }
+
+</style>
+</head>
+<body>
+    <div class="slider" id="accueil">
+        <div class="topnav" id="myTopnav">
+            <a href="./app.html" class=" logo"> <span class="gradient-text">MY</span> <i class="fa fa-globe" ></i> <span class="gradient-text">GYM</span></a>
+            <span class="navright">
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a href="./team.html">Team</a>
+                <a href="./Galery.html">Galery</a>
+                <a href="./planning.html">Planning</a>
+                <a href="./dashboard.html">Members</a>
+                <a href="./login.html" class="links h5"><i class="fa fa-user-circle-o"></i></a> <br />
+            </span>
+        </div>
+        <div class="container padding-top-large-px">
+            <div class="row ">
+                <div class="col-6">
+                    <div class="padding-large ligtern  light">
+                        <form id="pic-upload" action="./service/AddAdmin.php" method="post">
+                            <p class="h5 center line"> Add Admin </p> <hr /> <br />
+                            <p class="padding-bottom-x-small">Full Name : </p>
+                            <input type="text" placeholder="fullname" name="fullname" class="input"> 
+                            <p class="padding-bottom-x-small">email : </p>
+                            <input type="text" placeholder="email" name="email" class="input"> 
+                            <p class="padding-bottom-x-small">password : </p>
+                            <input type="text" placeholder="password" name="password" class="input"> 
+                            <p class="padding-bottom-x-small"></p>  
+                            <button type="submit" class="btn-secondairy uk-padding "> Valider </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-6 lightern light">
+                        <div class="row">
+                            <div class="overflow  ligtern table-heigt">
+                                <div id="load"></div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="col-12" id="verif-div">
+                    <div class="padding-large ligtern light" >
+                        <div>
+                            <span id="msg"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="demo">
+
+    </div>
+    <div class="col-12 padding-small footer light center">
+        <p>Copyright © 2020 All rights reserved | Made with love <i class="fa fa-heartbeat " ></i> </p>
+    </div>
+</body>
+
+<script src="./js/app.js"></script>
+
+<script>
+
+</script>
+</html>

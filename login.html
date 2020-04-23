@@ -26,24 +26,26 @@
                 <p class="h1 center padding-large"><a href="./app.html"> <span class="gradient-text">MY</span> <i class="fa fa-globe" ></i> <span class="gradient-text">GYM</span> </a> </p>
                 <p class="h5 center padding-bottom-small line"> Lorem, ipsum dolor sit amet, Doloremque quos ipsum, ipsa molestiae adipisci optio facere nihil distinctio tenetur.</p>
                 <div class="row">
-                    <div class="col-12">
-                        <input type="text" placeholder="Username" class="input"> 
-                    </div>
-
-                    <div class="col-12">
-                        <input type="password" id="password" placeholder="Password" class="input"> 
-                        <p class="links black" onclick="change()" id="mytext">Show password</p>
-                    </div>
-                    <div class="col-4"></div>
-                    <div class="col-8 block no-margin padding-left-right">
-                        <a class="btn-secondairy"> Valider </a>
-                    </div>
+                    <form action="./service/Login.php" method="POST">
+                        <div class="col-12">
+                            <input type="text" id="mail" name="mail" placeholder="email" class="input"> 
+                        </div>
+    
+                        <div class="col-12">
+                            <input type="password" id="password" name="password" placeholder="Password" class="input"> 
+                            <p class="links black" onclick="change()" id="mytext">Show password</p>
+                        </div>
+                        <div class="col-4"></div>
+                        <div class="col-8 block no-margin padding-left-right">
+                            <button class="btn-secondairy" type="submit"> Valider </button>
+                        </div>
+                    </form>
                 </div>
             </div>   
-
+            <div id="demo"></div>
             <p class="h5 black center padding-small ">Copyright © 2020 All rights reserved </p>
         </div>
-        
+
         <div class="col-6 loginback all-height center ">
 
         </div>
@@ -68,5 +70,21 @@
             $("#mytext").html("Show password")
         }
     } 
+    function login(){
+        if(document.querySelector("#mail").value != "" && document.querySelector("#password").value != ""){
+            var mail = document.querySelector("#mail").value 
+            var password =  document.querySelector("#password").value 
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log("response : " +this.responseText)
+                }
+            }
+            xhttp.open("POST", "./service/Login.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            str = "mail="+mail+"&password="+password
+            xhttp.send(str);        
+        }
+    }
 </script>
 </html>
