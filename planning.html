@@ -31,8 +31,9 @@
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i class="fa fa-bars"></i>
                 </a>
+                <a href="./auth/logout.php">logout</a>
                 <a href="./team.html">Team</a>
-                <a href="./Galery.html">Galery</a>
+                <a href="./galery.html">Galery</a>
                 <a href="./planning.html">Planning</a>
                 <a href="./dashboard.html">Members</a>
                 <a href="./login.html" class="links h5"><i class="fa fa-user-circle-o"></i></a> <br />
@@ -107,9 +108,27 @@
 <script src="./js/app.js"></script>
 
 <script>
-
+    function VerifLogin(){
+        if(localStorage.getItem("fullname") == "" || localStorage.getItem("token") == "" || localStorage.getItem("id") == ""){
+            window.location.replace("./login.html");
+        }else{
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    if(this.responseText != "verif"){
+                        window.location.replace("./login.html");
+                    }
+                }
+            };
+            xhttp.open("POST", "./service/VerifToken.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            str = "id="+localStorage.getItem("id")+"&token="+localStorage.getItem("token")
+            xhttp.send(str);
+        }
+    }
     document.querySelector("#verif-div").style.display = "none"
     function LoadPlannig() {
+        VerifLogin()
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {

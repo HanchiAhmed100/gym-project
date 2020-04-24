@@ -8,7 +8,7 @@ $name = $_POST['name'];
 $speciality = $_POST['speciality'];
 $id = $_POST['id'];
 
-$target_dir = "../public/";
+$target_dir = "../public/team/";
 
 $target_file = $target_dir . $name . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -47,7 +47,7 @@ if ($uploadOk == 0) {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$target_file )) {
         echo "The image of ". $name ." has been uploaded.";
         $team = new team();	
-        $team->update_team($id,$name,$speciality,"./public/". $name . basename($_FILES["fileToUpload"]["name"]));	
+        $team->update_team($id,$name,$speciality,"./public/team/". $name . basename($_FILES["fileToUpload"]["name"]));	
         
     } else {
         echo "Sorry, there was an error uploading your file.";
