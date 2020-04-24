@@ -1,6 +1,9 @@
 <?php
+    session_start();
+    if(empty($_SESSION['token']) || empty($_SESSION['id'])){
+        exit("Session Expired");
+    }
     include_once '../class/planning.class.php';
-    
     $planning = new planning();	
     $plan = $planning->Get_planning();
 

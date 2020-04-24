@@ -1,4 +1,8 @@
 <?php
+    session_start();
+    if(empty($_SESSION['token']) || empty($_SESSION['id'])){
+        exit("Session Expired");
+    }
     include_once '../class/team.class.php';
     $team = new team();	
     $team = $team->load_Coach();

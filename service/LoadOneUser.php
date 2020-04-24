@@ -1,4 +1,5 @@
 <?php
+    include_once './TokenVerifSession.php';
     include_once '../class/users.class.php';
     
     $id = $_GET['id'];

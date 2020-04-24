@@ -1,6 +1,5 @@
 <?php 
     include_once '../class/login.class.php';
-
 	$email = stripslashes(strip_tags($_POST['mail']));
     $password = stripslashes(strip_tags($_POST['password']));
 

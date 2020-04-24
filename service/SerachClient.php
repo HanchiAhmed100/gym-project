@@ -1,4 +1,8 @@
 <?php
+    session_start();
+    if(empty($_SESSION['token']) || empty($_SESSION['id'])){
+        exit("Session Expired");
+    }
     include_once '../class/users.class.php';
     $name = $_GET['name'];
     $users = new users();	

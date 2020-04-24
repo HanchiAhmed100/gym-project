@@ -1,4 +1,8 @@
 <?php 
+    session_start();
+    if(empty($_SESSION['token']) || empty($_SESSION['id'])){
+        exit("Session Expired");
+    }
     include_once '../class/planning.class.php';
 
     $class = stripslashes(strip_tags($_POST['class']));
