@@ -85,6 +85,26 @@
             $stmt ->execute();
             return $stmt;
         }
+        public function Load_Contact_msg(){
+            $stmt = $this->conn->prepare("SELECT * FROM contact ORDER BY date");
+            $stmt -> bindParam(':search',$search);            
+            $stmt ->execute();
+            return $stmt;
+        }
+        public function add_contact_msg($fullname,$email,$msg){
+            $stmt = $this->conn->prepare("INSERT INTO contact (fullname,email,message) VALUES (:fullname,:email,:message)");
+            $stmt -> bindParam(':fullname',$fullname); 
+            $stmt -> bindParam(':email',$email);            
+            $stmt -> bindParam(':message',$message);            
+            $stmt ->execute();
+            return $stmt;
+        }
+        public function delete_msg($id){
+            $stmt = $this->conn->prepare("DELETE FROM contact WHERE id = :id");
+            $stmt -> bindParam(':id',$id);            
+            $stmt ->execute();
+        }
+
     }
 	 
 ?>

@@ -31,13 +31,12 @@
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i class="fa fa-bars"></i>
                 </a>
-                <a href="./auth/logout.php">logout</a>
+                <a href="./contact.html">Contact</a>
                 <a href="./team.html">Team</a>
                 <a href="./galery.html">Galery</a>
                 <a href="./planning.html">Planning</a>
                 <a href="./dashboard.html">Members</a>
-                <a href="./login.html" class="links h5"><i class="fa fa-user-circle-o"></i></a> <br />
-
+                <a href="./auth/logout.php"><i class="fa fa-sign-out"></i></a>
             </span>
         </div>
         <div class="container padding-top-large-px">
@@ -79,15 +78,14 @@
                                 <option value="2">Gym 2 </option>
                             </select>
                         </div>
-                        <button class="btn-primary uk-padding " onclick="AddClass()"> Valider </button>
+                        <br />
+                        <span id="verif-div" class="padding-bottom-x-small "></span>
+
+                        <button class="btn-primary uk-padding" onclick="AddClass()"> Valider </button>
 
                     </div>
                 </div>
-                <div class="col-12" id="verif-div">
-                    <div class="padding-large ligtern light" >
-                        <span id="name"></span>
-                    </div>
-                </div>
+
                 <div class="col-12">
                     <div class="padding-large ligtern light">
                         <div id="load"></div>
@@ -126,7 +124,6 @@
             xhttp.send(str);
         }
     }
-    document.querySelector("#verif-div").style.display = "none"
     function LoadPlannig() {
         VerifLogin()
         var xhttp = new XMLHttpRequest();
@@ -139,27 +136,27 @@
         xhttp.send();
     }
     function AddClass() {
-        var classe =  document.querySelector("#class").value
-        var day =  document.querySelector("#day").value
-        var hour =  document.querySelector("#hours").value
-        var gym =  document.querySelector("#gym").value
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.querySelector("#verif-div").style.display = "block"
-                document.querySelector("#class").value = "" 
-                document.querySelector("#day").value = "Monday"
-                document.querySelector("#hours").value = "hour_08"
-                document.querySelector("#gym").value = "1"
-                document.querySelector("#verif-div ").innerHTML = "Class was added "
-                LoadPlannig() 
+        if(document.querySelector("#class").value != ""){
+            var classe =  document.querySelector("#class").value
+            var day =  document.querySelector("#day").value
+            var hour =  document.querySelector("#hours").value
+            var gym =  document.querySelector("#gym").value
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.querySelector("#class").value = "" 
+                    document.querySelector("#day").value = "Monday"
+                    document.querySelector("#hours").value = "hour_08"
+                    document.querySelector("#gym").value = "1"
+                    document.querySelector("#verif-div ").innerHTML = '<p class="h5">* Class was added </p>'
+                    LoadPlannig() 
+                }
             }
+            xhttp.open("POST", "./service/setPlanning.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            str = "class="+classe+"&day="+day+"&hour="+hour+"&gym="+gym
+            xhttp.send(str);
         }
-        xhttp.open("POST", "./service/setPlanning.php", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        str = "class="+classe+"&day="+day+"&hour="+hour+"&gym="+gym
-        xhttp.send(str);
     }
 </script>
 </html>

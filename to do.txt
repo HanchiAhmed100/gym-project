@@ -1,15 +1,11 @@
-update verif all
-check session in services - include script
-add galery page (admin , client)
-add blog page (admin , client)
+add galery page (client)
+add blog page (admin,client)
 add page contact  
-
-
 ------------------------------------------
 PWA
-	user
-	login
-	profile
-	add blog
-	paiment
+user
+login
+profile
+add blog
+paiment
 	

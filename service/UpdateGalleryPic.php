@@ -6,6 +6,7 @@
     include_once '../class/gallery.class.php';
     $title = $_POST['title'];
     $description = $_POST['description'];
+    $id = $_POST['id'];
 
     $target_dir = "../public/gallery/";
 
@@ -44,9 +45,10 @@
     // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$target_file )) {
-            echo "The image of ". $title ." has been uploaded.";
+            echo "Update";
             $gallery = new gallery();	
-            $gallery->add_gallery($title,$description,"./public/gallery/". $title . basename($_FILES["fileToUpload"]["name"]));	
+            $gallery->Update_gallery($id,$title,$description,"./public/gallery/". $title . basename($_FILES["fileToUpload"]["name"]));	
+            
         } else {
             echo "Sorry, there was an error uploading your file.";
         }

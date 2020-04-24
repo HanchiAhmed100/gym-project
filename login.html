@@ -55,6 +55,13 @@
 <script type="text/javascript" src="./js/jquery.js"></script>
 
 <script>
+    if(localStorage.getItem("token")){
+        window.location.replace("./dashboard.html");
+        console.log("exist")
+    }else{
+        console.log("dont")
+    }
+
     $(document).ready(function() {
         var slideHeight = $("#mydiv").height() ;
         $('.all-height').css('height',slideHeight+50);      

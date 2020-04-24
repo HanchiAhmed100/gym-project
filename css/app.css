@@ -685,6 +685,9 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
 .line{
   line-height: 30px
 }
+.line-small{
+  line-height: 15px
+}
 
 .links{
   cursor: pointer;

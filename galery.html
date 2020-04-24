@@ -53,12 +53,12 @@
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i class="fa fa-bars"></i>
                 </a>
-                <a href="./auth/logout.php">logout</a>
+                <a href="./contact.html">Contact</a>
                 <a href="./team.html">Team</a>
                 <a href="./galery.html">Galery</a>
                 <a href="./planning.html">Planning</a>
                 <a href="./dashboard.html">Members</a>
-                <a href="./login.html" class="links h5"><i class="fa fa-user-circle-o"></i></a> <br />
+                <a href="./auth/logout.php"><i class="fa fa-sign-out"></i></a>
             </span>
         </div>
         <div class="container padding-top-large-px">
@@ -78,42 +78,48 @@
                                     <input type="file" name="fileToUpload" id="file"/>
                                 </span>
                                 <p class="padding-bottom-x-small"></p>  
-                                <span id="msg"></span>
-
                                 <button type="submit" class="btn-secondairy uk-padding "> Valider </button>
+                                <p class="padding-bottom-x-small"></p>  
+                                <span id="msg"></span>
                             </form>
                         </div>
                         <div id="update-form">
-                            <form id="gallery-upload-update" action="./service/UpdateGaleryPic.php" method="post" enctype="multipart/form-data">
+                            <form id="gallery-upload-update" action="./service/UpdateGalleryPic.php" method="post" enctype="multipart/form-data">
                                 <p class="h5 center line"> Update gallery image  </p> <hr /> <br />
                                 <p class="padding-bottom-x-small">Title : </p>
-                                <input type="text" placeholder="class" name="name" class="input"  id="UpdateTitle" > 
+                                <input type="text" placeholder="Title" name="title" class="input"  id="UpdateTitle" > 
                                 <p class="padding-bottom-x-small">Description : </p>
-                                <input type="text" placeholder="speciality" name="speciality" class="input" id="UpdateDescription" > 
+                                <input type="text" placeholder="Description" name="description" class="input" id="UpdateDescription" > 
                                 <p class="padding-bottom-x-small">Picture : </p>
                                 <span class="hiddenFileInput">
                                     <input type="file" name="fileToUpload" id="fileudate"/>
                                 </span>
                                 <input type="hidden" id="id" name="id" value="">
                                 <p class="padding-bottom-x-small"></p>  
-                                <span id="msg"></span>
-
                                 <button type="submit" class="btn-secondairy uk-padding "> Valider </button>
+                                <p class="padding-bottom-x-small"></p>  
+                                <span id="msg"></span>
                             </form>
                         </div>
                     </div>
                 </div>
-
                 <div class="col-12 lightern light">
-                    <div id="load"></div>
-                </div>
-               
+                    <div class="row">
+                        <div id="load"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"></div>
+                        <div class="padding col-4 ">
+                            <span class="" id="msgdelete"></span>  
+                        </div>
+                    </div>
+
+
+                </div>   
             </div>
         </div>
     </div>
-    <div id="demo">
 
-    </div>
     <div class="col-12 padding-small footer light center">
         <p>Copyright © 2020 All rights reserved | Made with love <i class="fa fa-heartbeat " ></i> </p>
     </div>
@@ -150,27 +156,27 @@
                 document.getElementById("load").innerHTML = this.responseText
                 var img = document.querySelectorAll('[id^="galspan"]');
                 var divs = document.querySelectorAll('[id^="galimg"]');
-
                 for(var i = 0 ; i < divs.length ; i++ ){
-                    //var str ="url('"+img[i].id+"')"
                     divs[i].style.backgroundImage = "url('"+img[i].className+"')"
                     divs[i].style.backgroundSize = "cover"
-
                 }
             }
         };
         xhttp.open("GET", "./service/LoadGallery.php", true);
         xhttp.send();
     }
-    function Update(id,name,spe){
+    function UpdateGalImg(id,title,desc){
+        window.scrollTo(0, 0);
         document.querySelector("#add-form").style.display = "none"
         document.querySelector("#update-form").style.display = "block"
         document.querySelector("#id").value = id
-        document.querySelector("#Upspeciality").value = spe
-        document.querySelector("#Upname").value = name
+        document.querySelector("#UpdateTitle").value = title
+        document.querySelector("#UpdateDescription").value = desc
     }
-    function DeleteGaleryImg(id){
-        document.querySelector("#msg").innerHTML = '<p class="h5">Confirm Delete picture   <i onclick="close_coach_msg()" class="fa fa-close right margin-right-left links" > </i> <i  onclick="DeleteCoachConfirmed('+id+')" class="fa fa-check right margin-right-left links"> </i> </p>'
+    function DeleteGalImg(id){
+        var element = document.querySelector("#msgdelete") 
+        window.scrollTo(element.offsetLeft,element.offsetTop); 
+        document.querySelector("#msgdelete").innerHTML = '<p class="h5">Confirm Delete picture   <i onclick="close_galery_msg()" class="fa fa-close right margin-right-left links" > </i> <i  onclick="DeleteGaleryImgConfirmed('+id+')" class="fa fa-check right margin-right-left links"> </i> </p>'
     } 
     function ShowGalImg(id){
         window.location.href = id;
@@ -179,15 +185,15 @@
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("msg").innerHTML = '<p class="h5">picture deleted</h5>'
-                LoadCoach()
+                document.getElementById("msgdelete").innerHTML = '<p class="h5 center">picture deleted</h5>'
+                    LoadGallery()
             }
         }
-        xhttp.open("GET", "./service/DeleteCoach.php?id="+id, true);
+        xhttp.open("GET", "./service/DeleteGalleryImg.php?id="+id, true);
         xhttp.send();
     }
     function close_galery_msg(){
-        document.querySelector("#msg").innerHTML = ""
+        document.querySelector("#msgdelete").innerHTML = ""
     }
     document.addEventListener("DOMContentLoaded", function(){
         document.getElementById('gallery-upload').addEventListener("submit", function(e){
@@ -221,13 +227,14 @@
             var data = new FormData(form)
             var request = new XMLHttpRequest()
             if( document.querySelector("#fileudate").value != "" ){
-                if( document.querySelector("#UpdateTitles").value != "" && document.querySelector("#UpdateDescription").value != ""  ){
+                if( document.querySelector("#UpdateTitle").value != "" && document.querySelector("#UpdateDescription").value != ""  ){
                     request.onreadystatechange = function(){
-                        document.querySelector("#msg").innerHTML = request.responseText
+                        console.log(this.responseTex)
+                        document.querySelector("#msg").innerHTML = "Picture Updated"
                         document.querySelector("#id").value = ""
-                        document.querySelector("#UpdateTitles").value = ""
+                        document.querySelector("#UpdateTitle").value = ""
                         document.querySelector("#UpdateDescription").value = ""
-                        document.querySelector("#add-upload").style.display = "block"
+                        document.querySelector("#add-form").style.display = "block"
                         document.querySelector("#update-form").style.display = "none"
                         LoadGallery()
                     }

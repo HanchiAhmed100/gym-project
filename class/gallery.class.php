@@ -19,7 +19,7 @@
 			$stmt ->execute();
 			return $stmt;
 		} 
-		public function update_gallery($id,$title,$description,$pic){
+		public function Update_gallery($id,$title,$description,$pic){
 			$stmt = $this->conn->prepare ("UPDATE gallery SET title = :title , description = :description , pic = :pic WHERE id = :id ");
 			$stmt -> bindParam(':id',$id);
 			$stmt -> bindParam(':title',$title);
