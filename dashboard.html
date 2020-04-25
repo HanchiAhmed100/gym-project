@@ -135,13 +135,13 @@
 <script>
     function VerifLogin(){
         if(localStorage.getItem("fullname") == "" || localStorage.getItem("token") == "" || localStorage.getItem("id") == ""){
-            window.location.replace("./login.html");
+            window.location.replace("./auth/clearstorage.html");
         }else{
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     if(this.responseText != "verif"){
-                        window.location.replace("./login.html");
+                        window.location.replace("./auth/clearstorage.html");
                     }
                 }
             };

@@ -486,7 +486,7 @@ a{
   vertical-align: middle;
 }
 .height{
-  height: 375px
+  height: 360px
 }
 .height-large{
   height: 450px
@@ -508,15 +508,13 @@ a{
 .hov-black:hover{
   background:rgba(0,0,0,0.7) 
 }
+
 .show-on-hover{
   display: none;
 }
-
-
 .hov-black:hover .show-on-hover{
   display: block;
 }
-
 .hov:hover .show-on-hover{
   display: block;
 }
@@ -525,6 +523,17 @@ a{
   top:50%;
   bottom: 50%
 }
+
+.hov-black-gallery:hover{
+  position: relative;
+  top: 70%;
+  height: 30%;
+  background:rgba(0,0,0,0.85);
+}
+.hov-black-gallery:hover .show-on-hover{
+  display: block;
+}
+
 /* 
 .inc{
   border: 2px solid #fff;
@@ -842,4 +851,18 @@ option:checked, option:hover {
 }
 .full-widht{
   width: 100%;
+}
+.notif{
+  display: none;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  padding : 15px;
+  width: 300px;
+  color : #fff;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,0.8);
+  border-bottom: 2px solid;
+  border-image-source:linear-gradient(135deg, #00b09b, #96c93d); 
+  border-image-slice: 1;  
 }

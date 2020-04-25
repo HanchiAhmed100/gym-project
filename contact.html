@@ -47,13 +47,13 @@
 <script>
     function VerifLogin(){
         if(localStorage.getItem("fullname") == "" || localStorage.getItem("token") == "" || localStorage.getItem("id") == ""){
-            window.location.replace("./login.html");
+            window.location.replace("./auth/clearstorage.html");
         }else{
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     if(this.responseText != "verif"){
-                        window.location.replace("./login.html");
+                        window.location.replace("./auth/clearstorage.html");
                     }
                 }
             };
@@ -62,6 +62,26 @@
             str = "id="+localStorage.getItem("id")+"&token="+localStorage.getItem("token")
             xhttp.send(str);
         }
+    }
+    function DeleteContactMsg(id,name){
+        document.querySelector("#Msg").style.display = "block"
+        window.scrollTo(0,0); 
+        document.querySelector("#Msg").innerHTML = '<p class="h5">Confirm to Delete '+name+' Message   <i onclick="close_delete_msg()" class="fa fa-close right margin-right-left links" > </i> <i  onclick="DeleteContactMsgConfirmed('+id+')" class="fa fa-check right margin-right-left links"> </i> </p>'
+    }
+    function DeleteContactMsgConfirmed(id){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.querySelector("#Msg").style.display = "block"
+                document.querySelector("#Msg").innerHTML = '<p class="h5 center">Message deleted</h5>'
+                LoadMessges()
+            }
+        }
+        xhttp.open("GET", "./service/DeleteContactMessage.php?id="+id, true);
+        xhttp.send();
+    }
+    function close_delete_msg(){
+        document.querySelector("#Msg").style.display = "none"
     }
     function LoadMessges() {
         VerifLogin()

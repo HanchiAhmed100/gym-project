@@ -1,6 +1,6 @@
-add galery page (client)
+add galery + blog + team page (client)
 add blog page (admin,client)
-add page contact  
+
 ------------------------------------------
 PWA
 user

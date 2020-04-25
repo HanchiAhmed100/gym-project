@@ -432,25 +432,31 @@
             <div class="row">
                 <div class="col-3"></div>
                 <div class="col-6">
-                    <input type="text" placeholder="Full Name" class="input"> 
+                    <input type="text" placeholder="Full Name" id="fullname" class="input"> 
                 </div>
             </div>
             <div class="row">
                 <div class="col-3"></div>
                 <div class="col-6">
-                    <input type="text" placeholder="Email" class="input"> 
+                    <input type="text" placeholder="Email" id="email" class="input"> 
                 </div>
             </div>
             <div class="row">
                 <div class="col-3"></div>
                 <div class="col-6">
-                    <textarea class="input" placeholder="Your message" rows="1"></textarea>
+                    <textarea class="input" id="msg" placeholder="Your message" rows="1"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <div id="error"> </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-5"></div>
                 <div class="col-2 block no-margin padding-left-right">
-                    <a class="btn-secondairy"> Valider </a>
+                    <a class="btn-secondairy" onclick="sendContactMsg()"> Valider </a>
                 </div>
             </div>
         </div>   
@@ -504,7 +510,9 @@
             <div class="" id="modal-img"></div>
         </div>
     </div>
-    
+    <div id="notif" class="notif">
+        
+    </div>
     
     <a class="totop" href="#accueil">
         <i class="fa fa-arrow-up links"></i>
@@ -512,21 +520,49 @@
 </body>
 
 <script type="text/javascript" src="./js/jquery.js"></script>
-<script src="./js/app.js">
-
-</script>
+<script type="text/javascript" src="./js/app.js"> </script>
 
 <script>
-
-function myFunction() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-
+    function validateEmail($email) {
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        return emailReg.test( $email );
+    }
+    function sendContactMsg(){
+        if(document.querySelector("#email").value != "" && document.querySelector("#fullname").value != "" && document.querySelector("#msg").value != ""){
+            if( !validateEmail(document.querySelector("#email").value) ) {
+                document.querySelector("#error").innerHTML = " * invalid email ! "
+            }else{
+                var email = document.querySelector("#email").value 
+                var fullname =  document.querySelector("#fullname").value 
+                var msg =  document.querySelector("#msg").value 
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.querySelector("#notif").style.display = "block"
+                        document.querySelector("#notif").innerHTML = '<p class="h5">Thank you '+fullname+' we will contact you soon</p>'
+                        document.querySelector("#email").value = ""
+                        document.querySelector("#fullname").value = "" 
+                        document.querySelector("#msg").value = ""
+                        setTimeout(function(){document.querySelector("#notif").style.display = "none"}, 10000);
+                    }
+                }
+                xhttp.open("POST", "./service/AddMsg.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                str = "email="+email+"&fullname="+fullname+"&msg="+msg
+                xhttp.send(str);  
+            }      
+        }else{
+            document.querySelector("#error").innerHTML = " * All fields are required ! "
+        }
+    }
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+    }
     $(document).ready(function() {
         var slideHeight = window.innerHeight;
         $('.background').css('height',slideHeight/1.7);
@@ -568,6 +604,7 @@ function myFunction() {
             }
         }
     }
+ 
 
 </script>
 </html>

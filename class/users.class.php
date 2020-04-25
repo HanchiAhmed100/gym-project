@@ -95,7 +95,7 @@
             $stmt = $this->conn->prepare("INSERT INTO contact (fullname,email,message) VALUES (:fullname,:email,:message)");
             $stmt -> bindParam(':fullname',$fullname); 
             $stmt -> bindParam(':email',$email);            
-            $stmt -> bindParam(':message',$message);            
+            $stmt -> bindParam(':message',$msg);            
             $stmt ->execute();
             return $stmt;
         }
