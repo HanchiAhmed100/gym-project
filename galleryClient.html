@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="./css/app.css" />
     <link rel="stylesheet" href="./fonts/font-awesome/css/font-awesome.css">
 </head>
-<body>
+<body onload="LoadGalleryClient()">
     <div class="slider" id="accueil">
         <div class="topnav" id="myTopnav">
             <a href="#news" class=" logo"> <span class="gradient-text">MY</span> <i class="fa fa-globe" ></i> <span class="gradient-text">GYM</span></a>
@@ -16,66 +16,43 @@
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i class="fa fa-bars"></i>
                 </a>
-                <a href="#accueil">Accueil</a>
-                <a href="#galery">Galery</a>
-                <a href="#team">Team</a>
-                <a href="#planning">Planning</a>
-                <a href="#offres">Offres</a>
-                <a href="#contact">Contact</a>
+                <a href="./app.html#accueil">Accueil</a>
+                <a href="./app.html#galery">Galery</a>
+                <a href="./app.html#team">Team</a>
+                <a href="./app.html#planning">Planning</a>
+                <a href="./app.html#offres">Offres</a>
+                <a href="./app.html#contact">Contact</a>
                 <a href="./login.html" class="links h5"><i class="fa fa-user-circle-o"></i></a> <br />
-
             </span>
         </div>
     </div>
-        <div class="padding-top-large-px"></div>
-        <div class="row ">
-                <div class="col-4 coach1 height border no-margin light center">
-                    <div class="hov-black-gallery height">
-                        <div class="show-on-hover">
-                            <div class="padding-small">
-                                <p class="h4">ALI Lil Wayen</p>
-                                <p class="h5">qsodkpoqs psdkqp qsdnoqsp</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 coach2 height border no-margin">
-                    <div class="hov-black height">
-                        <div class="show-on-hover">
-                            <div class="padding-large mid">
-                                <div class="light center">
-                                    <div class="max-margin">
-                                        <a class="btn-secondairy"> LEARN MORE </a>
-                                    </div>
-                                </div>    
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 coach3 height border no-margin">
-                    <div class="hov-black height">
-                        <div class="hov-black height">
-                            <div class="show-on-hover">
-                                <div class="padding-large mid">
-                                    <div class="light center">
-                                        <div class="max-margin">
-                                            <a class="btn-secondairy"> LEARN MORE </a>
+    <div class=" blackdiv light left">
+        <div class=" padding-top-large-px">
+            <div class="row">
+                <div class=" lightern light">
+                    <div class="row">
+                        <div class="blackdiv light">
+                            <div class="container">
+                                <div class="row padding-large">
+                                    <div class="col-12 center">
+                                        <div class="padding-large">
+                                            <p class="h2 gradient-text">Gallery </p>
+                                            <p class="h5">Deleniti facilis dolore, cupiditate, incidunt fugiat officiis dolorem adipisci omnis velit!</p>
                                         </div>
                                     </div>    
-                                </div>
+                                </div>        
                             </div>
                         </div>
+                        <div id="load"></div>
                     </div>
-                </div>
+                </div>   
             </div>
-    
-    <div class="parallax"></div>
+        </div>
+    </div>
 
-   
     <div class="row blackdiv light left">
         <div class="padding-large ">
             <div class="col-1">
-
             </div>
             <div class="col-3 padding line">
                 <p class="h3 gradient-text padding-bottom-small">Navigations </p>
@@ -127,7 +104,25 @@
         }
     }
     
- 
+    function LoadGalleryClient() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("load").innerHTML = this.responseText
+                var img = document.querySelectorAll('[id^="galspan"]');
+                var divs = document.querySelectorAll('[id^="galimg"]');
+                for(var i = 0 ; i < divs.length ; i++ ){
+                    divs[i].style.backgroundImage = "url('"+img[i].className+"')"
+                    divs[i].style.backgroundSize = "cover"
+                }
+            }
+        };
+        xhttp.open("GET", "./service/LoadClientGallery.php", true);
+        xhttp.send();
+    }
+    function ShowGalImg(id){
+        window.location.href = id;
+    }
  
 
 </script>
