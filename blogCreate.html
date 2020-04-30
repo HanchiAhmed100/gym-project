@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Gym</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/app.css" />
+    <link rel="stylesheet" href="./fonts/font-awesome/css/font-awesome.css">
+    <style>
+    .notif{
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        padding : 15px;
+        width: 300px;
+        color : #fff;
+        border-radius: 5px;
+        background-color: rgba(0,0,0,0.8);
+        border-bottom: 2px solid;
+        border-image-source:linear-gradient(135deg, #00b09b, #96c93d); 
+        border-image-slice: 1;  
+    }
+    .hiddenFileInput > input{
+        height: 100%;
+        width: 100;
+        opacity: 0;
+        cursor: pointer;
+    }
+    .hiddenFileInput{
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+        overflow: hidden;
+        
+        /*for the background, optional*/
+        background: center center no-repeat;
+        background-size: contain;
+        background-image:  url("./img/photo.png");
+    }
+    .medium-img{
+        width: 300px;
+        height:300px;
+    }
+
+</style>
+</head>
+<body onload="LoadBlog('admin')">
+    <div class="slider" id="accueil">
+        <div class="topnav" id="myTopnav">
+            <a href="./app.html" class=" logo"> <span class="gradient-text">MY</span> <i class="fa fa-globe" ></i> <span class="gradient-text">GYM</span></a>
+            <span class="navright">
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a href="./contact.html">Contact</a>
+                <a href="./team.html">Team</a>
+                <a href="./galery.html">Galery</a>
+                <a href="./planning.html">Planning</a>
+                <a href="./dashboard.html">Members</a>
+                <a href="./auth/logout.php"><i class="fa fa-sign-out"></i></a>
+            </span>
+        </div>
+        <div class="container padding-top-large-px">
+            <div class="row ">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="padding-large ligtern  light">
+                                <div id="add-form">
+                                    <form id="blog-upload" action="./service/AddBlog.php" method="post" enctype="multipart/form-data">
+                                        <p class="h5 center line"> Add blog Article  </p> <hr /> <br />
+                                        <p class="padding-bottom-x-small">Title : </p>
+                                        <input type="text" placeholder="Title" name="title" class="input"  id="title" > 
+                                        <p class="padding-bottom-x-small">Description : </p>
+                                        <textarea class="input" placeholder="Description" id="description" name="description" rows="5"  ></textarea>
+                                        <p class="padding-bottom-x-small">Picture : </p>
+                                        <span class="hiddenFileInput">
+                                            <input type="file" name="fileToUpload" id="file"/>
+                                        </span>
+                                        <p>*Adding an image is not mandatory</p>
+                                        <p class="padding-bottom-x-small"></p>  
+                                        <button type="submit" class="btn-secondairy uk-padding "> Valider </button>
+                                        <p class="padding-bottom-x-small"></p>  
+                                        <span id="msg"></span>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container padding-top-large-px">
+                    <div class="row padding-top-large-px">  
+                        <div class="col-12 ">
+                            <div class="row">
+                                <div class="col-4">                            
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn-secondairy uk-padding" onclick="LoadBlog('users')"> Users Articles </button>
+                                </div>
+                                <div class="col-2">
+                                    <button class="btn-secondairy uk-padding" onclick="LoadBlog('admin')"> Admin Articles </button>
+                                </div>
+                                <div class="col-2"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="container padding-top-large-px">
+                    <div class="row padding-top-large-px">
+                        <div id="load"></div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 padding-small footer light center">
+        <p>Copyright © 2020 All rights reserved | Made with love <i class="fa fa-heartbeat" ></i> </p>
+    </div>
+</body>
+
+<!-- <script type="text/javascript" src="./js/jquery.js"></script> -->
+<script src="./js/app.js"></script>
+
+<script>
+    function VerifLogin(){
+        if(localStorage.getItem("fullname") == "" || localStorage.getItem("token") == "" || localStorage.getItem("id") == ""){
+            window.location.replace("./auth/clearstorage.html");
+        }else{
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    if(this.responseText != "verif"){
+                        window.location.replace("./auth/clearstorage.html");
+                    }
+                }
+            };
+            xhttp.open("POST", "./service/VerifToken.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            str = "id="+localStorage.getItem("id")+"&token="+localStorage.getItem("token")
+            xhttp.send(str);
+        }
+    }
+    function LoadBlog(user_type) {
+        VerifLogin()
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("load").innerHTML = this.responseText
+                var img = document.querySelectorAll('[id^="galspan"]');
+                var divs = document.querySelectorAll('[id^="galimg"]');
+                var height = document.querySelectorAll('[id^="my-height"]');
+                for(var i = 0 ; i < divs.length ; i++ ){
+                    divs[i].style.backgroundImage = "url('"+img[i].className+"')"
+                    divs[i].style.backgroundSize = "cover"
+                    divs[i].style.height = height[i].offsetHeight+"px";
+                }
+            }
+        };
+        console.log(user_type)
+        if(user_type == 'admin'){
+            xhttp.open("GET", "./service/LoadAdminBlog.php", true);
+        }else{
+            console.log("ssssdd")
+            xhttp.open("GET", "./service/LoadusersBlog.php", true);   
+        }
+        xhttp.send();
+    }
+
+    document.addEventListener("DOMContentLoaded", function(){
+        document.getElementById('blog-upload').addEventListener("submit", function(e){
+            e.preventDefault()
+            var form = e.target
+            var data = new FormData(form)
+            var request = new XMLHttpRequest()
+            if( document.querySelector("#title").value != "" && document.querySelector("#description").value != ""  ){
+                request.onreadystatechange = function(){
+                    console.log(this.responseText)
+                    document.querySelector("#msg").innerHTML = '<p class="h5">Your article has been added !</p>'
+                    document.querySelector("#title").value = ""
+                    document.querySelector("#description").value = ""
+                    LoadBlog()
+                }
+                request.open(form.method, form.action)
+                request.send(data)
+            }else{
+                document.querySelector("#msg").innerHTML = '<p class="h5">* Titles and Description fields are required !</p>'
+            }
+        })
+    })
+    
+</script>
+</html>

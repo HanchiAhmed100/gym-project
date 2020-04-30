@@ -7,14 +7,14 @@ class connexion{
 	public $dbb;
 
 	public function connect(){
-		$this->bdd = null;
+		$this->dbb = null;
 		try {   
-			$this->bdd = new PDO('mysql:host='.$this->host.';dbname='.$this->database,$this->name,$this->dbpassword);  
-			$this->bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
+			$this->dbb = new PDO('mysql:host='.$this->host.';dbname='.$this->database,$this->name,$this->dbpassword);  
+			$this->dbb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
 		}catch(Exception $e) { 
 			die('Erreur : '.$e->getMessage());   
 		}
-		return $this->bdd;
+		return $this->dbb;
 	}
 }
 ?>

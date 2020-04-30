@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Gym</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/app.css" />
+    <link rel="stylesheet" href="./fonts/font-awesome/css/font-awesome.css">
+</head>
+<body onload="LoadBlog()">
+    <div class="slider" id="accueil">
+        <div class="topnav" id="myTopnav">
+            <a href="./app.html" class=" logo"> <span class="gradient-text">MY</span> <i class="fa fa-globe" ></i> <span class="gradient-text">GYM</span></a>
+            <span class="navright">
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a href="./contact.html">Contact</a>
+                <a href="./team.html">Team</a>
+                <a href="./galery.html">Galery</a>
+                <a href="./planning.html">Planning</a>
+                <a href="./dashboard.html">Members</a>
+                <a href="./auth/logout.php"><i class="fa fa-sign-out"></i></a>
+            </span>
+        </div>
+        <div class="container padding-top-large-px">
+            <div class="row padding-top-large-px">
+                <div id="load"></div>                        
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 padding-small footer light center">
+        <p>Copyright © 2020 All rights reserved | Made with love <i class="fa fa-heartbeat " ></i> </p>
+    </div>
+</body>
+
+<!-- <script type="text/javascript" src="./js/jquery.js"></script> -->
+<script src="./js/app.js"></script>
+
+<script>
+    function VerifLogin(){
+        if(localStorage.getItem("fullname") == "" || localStorage.getItem("token") == "" || localStorage.getItem("id") == ""){
+            window.location.replace("./auth/clearstorage.html");
+        }else{
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    if(this.responseText != "verif"){
+                        window.location.replace("./auth/clearstorage.html");
+                    }
+                }
+            };
+            xhttp.open("POST", "./service/VerifToken.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            str = "id="+localStorage.getItem("id")+"&token="+localStorage.getItem("token")
+            xhttp.send(str);
+        }
+    }
+
+    function LoadBlog() {
+        VerifLogin()
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("load").innerHTML = this.responseText
+                var img = document.querySelectorAll('[id^="galspan"]');
+                var divs = document.querySelectorAll('[id^="galimg"]');
+                var height = document.querySelectorAll('[id^="my-height"]');
+                for(var i = 0 ; i < divs.length ; i++ ){
+                    divs[i].style.backgroundImage = "url('"+img[i].className+"')"
+                    divs[i].style.backgroundSize = "cover"
+                    divs[i].style.height = height[i].offsetHeight+"px";
+                }
+            }
+        };
+        xhttp.open("GET", "./service/LoadBlog.php", true);
+        xhttp.send();
+    }
+</script>
+</html>

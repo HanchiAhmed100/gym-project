@@ -4,7 +4,6 @@
         exit("Session Expired");
     }
     include_once '../class/users.class.php';
-
 	$fullname = stripslashes(strip_tags($_POST['fullname']));
     $email = stripslashes(strip_tags($_POST['email']));
     $sexe = stripslashes(strip_tags($_POST['sexe']));

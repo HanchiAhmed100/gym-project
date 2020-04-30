@@ -102,7 +102,6 @@ a{
   .col-10 {width: 83.33%;}
   .col-11 {width: 91.66%;}
   .col-12 {width: 100%;}
-
 }
 
 @media only screen and (min-width: 960px) {
@@ -113,11 +112,16 @@ a{
 .all-heigh{
   height: 350px
 }
+
+.round-profile{
+  border-radius: 10%;
+  height: 55px;
+  width: 55px
+}
 @media only screen and (max-width: 900px) {
   .all-heigh{
     height: 400px
   }
-
 }
 
 /* navbar css */
@@ -215,7 +219,6 @@ a{
 .padding-small {
   padding : 15px
 }
-
 .margin {
   margin : 20px
 }
@@ -228,7 +231,6 @@ a{
 .padding-large {
   padding : 35px
 }
-
 .padding-bottom-small{
   padding-bottom: 25px
 }
@@ -236,8 +238,6 @@ a{
   padding-bottom: 10px;
   padding-top: 10px
 }
-
-
 .padding-xlarge{
   padding : 15%
 }
@@ -258,6 +258,9 @@ a{
 }
 .secondary-color {
   color : #96c93d
+}
+.muted-color {
+  color: #616770
 }
 .light {
   color: #fff
@@ -298,8 +301,6 @@ a{
 .ba4{
   background-image: url("../img/ba4.jpg");
 }
-
-
 .contoure{
   border: 2px solid ;
   border-radius: 2px;
@@ -421,6 +422,11 @@ a{
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+
+
+
+
 .parallax-galery {
   background-image: url("../img/77.jpg");
   min-height: 300px; 
@@ -497,23 +503,24 @@ a{
 .border{
   border: 1.5px solid #000;
 }
+
+
 .hov{
   background:linear-gradient(135deg#00b09b00,#96c93d00);
   transition: 5s;
-
 }
 .hov:hover{
   background:linear-gradient(135deg, #00b09b99, #96c93d99); 
 }
-.hov-black:hover{
-  background:rgba(0,0,0,0.7) 
+.hov-black:hover .show-on-hover{
+  display: block;
 }
-
 .show-on-hover{
   display: none;
 }
-.hov-black:hover .show-on-hover{
-  display: block;
+
+.hov-black:hover{
+  background:rgba(0,0,0,0.7) 
 }
 .hov:hover .show-on-hover{
   display: block;

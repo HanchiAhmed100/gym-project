@@ -35,7 +35,7 @@
             }else{
                 $picture = "./public/female.jpg" ;
             }
-            $stmt = $this->conn->prepare ("INSERT INTO users (fullname,username,password,email,sexe,age,picture,active,created_at,token) VALUES (:fullname,:username,:mypassword,:email,:sexe,:age,:picture,:active,:created_at,:token)");
+            $stmt = $this->conn->prepare("INSERT INTO users (fullname,username,password,email,sexe,age,picture,active,created_at,token) VALUES (:fullname,:username,:mypassword,:email,:sexe,:age,:picture,:active,:created_at,:token)");
             $stmt -> bindParam(':fullname',$fullname);
             $stmt -> bindParam(':username',$fullname);
             $stmt -> bindParam(':mypassword',$mypassword);

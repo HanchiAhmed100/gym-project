@@ -1,4 +1,3 @@
-add galery + blog + team page (client)
 add blog page (admin,client)
 
 ------------------------------------------
