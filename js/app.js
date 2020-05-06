@@ -8,6 +8,14 @@ function myFunction() {
   }
 }
 
+function changeNav() {
+  if(document.getElementById("mySidenav").style.width == "0px"){
+    document.getElementById("mySidenav").style.width = "35%";
+  }else{
+    document.getElementById("mySidenav").style.width = "0";
+  }
+}
+
   
 
 

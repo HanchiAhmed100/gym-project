@@ -873,3 +873,57 @@ option:checked, option:hover {
   border-image-source:linear-gradient(135deg, #00b09b, #96c93d); 
   border-image-slice: 1;  
 }
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  border-right: 2px solid #000;
+
+}
+
+.sidenav a {
+  margin-top: 25px;
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav .menuText {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #FFF;
+  display: block;
+  transition: 0.3s;
+  text-align: center
+}
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+.out{
+  position: absolute;
+  bottom: 50px
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px; max-width: 100%;min-width: 100%}
+  .sidenav a {font-size: 18px;}
+}
