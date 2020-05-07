@@ -9,10 +9,18 @@ function myFunction() {
 }
 
 function changeNav() {
-  if(document.getElementById("mySidenav").style.width == "0px"){
-    document.getElementById("mySidenav").style.width = "35%";
+  if(window.innerWidth > 600){
+    if(document.getElementById("mySidenav").style.width == "0px"){
+      document.getElementById("mySidenav").style.width = "35%";
+    }else{
+      document.getElementById("mySidenav").style.width = "0";
+    }
   }else{
-    document.getElementById("mySidenav").style.width = "0";
+    if(document.getElementById("mySidenav").style.width == "0px"){
+      document.getElementById("mySidenav").style.width = "100%";
+    }else{
+      document.getElementById("mySidenav").style.width = "0";
+    }
   }
 }
 

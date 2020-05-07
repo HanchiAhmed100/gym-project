@@ -30,12 +30,12 @@
 		} 
 
         public function load_admin_blog(){
-            $stmt = $this->conn->prepare ("SELECT * FROM blog join admin ON blog.user_id = admin.id WHERE blog.state = 1 AND blog.type = 0 ORDER BY blog.created_at");
+            $stmt = $this->conn->prepare ("SELECT blog.* , admin.fullname FROM blog join admin ON blog.user_id = admin.id WHERE blog.state = 1 AND blog.type = 0 ORDER BY blog.created_at");
             $stmt ->execute();
             return $stmt;
         } 
         public function load_users_blog(){
-            $stmt = $this->conn->prepare ("SELECT * FROM blog join users ON blog.user_id = users.id WHERE blog.state = 1 AND blog.type = 1 ORDER BY blog.created_at");
+            $stmt = $this->conn->prepare ("SELECT blog.* ,users.fullname,users.picture FROM blog join users ON blog.user_id = users.id WHERE blog.state = 1 AND blog.type = 1 ORDER BY blog.created_at");
             $stmt ->execute();
             return $stmt;
         } 

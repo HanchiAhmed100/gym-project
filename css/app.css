@@ -5,12 +5,10 @@
   margin : 0px;
   cursor: auto
 }
-
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
 }
-
 /* Track */
 ::-webkit-scrollbar-track {
   background: #000; 
@@ -42,11 +40,11 @@ input[type=number] {
   font-family: myfont;
   src: url(../fonts/Inconsolata/Inconsolata-Regular.ttf);
 }
+
 html {
   margin: 0px;
   padding: 0px;
   scroll-behavior: smooth;
-
 }
 
 body{
@@ -109,9 +107,7 @@ a{
     width: 33.33%;
   }
 }
-.all-heigh{
-  height: 350px
-}
+
 
 .round-profile{
   border-radius: 10%;
@@ -123,11 +119,14 @@ a{
     height: 400px
   }
 }
+.all-heigh{
+  height: 350px
+}
 
 /* navbar css */
 .topnav {
   overflow: hidden;
-  background-color: #151515;
+  background-color: #111;
   position: fixed;
   width: 100%;
   z-index: 1000;
@@ -142,7 +141,6 @@ a{
   padding: 14px 16px;
   text-decoration: none;
   font-size: 24px;
-
 }
 
 .topnav a:hover {
@@ -158,6 +156,7 @@ a{
 .topnav .icon {
   display: none;
 }
+
 .logo{
   font-weight: bolder
 }
@@ -193,6 +192,7 @@ a{
   float: right;
   margin-right: 35px
 }
+
 .no-margin{
   margin: 0px;
   padding: 0px;
@@ -268,7 +268,6 @@ a{
 .h1{ 
   font-size: 70px;
 }
-
 .h2{
   font-size: 40px
 }
@@ -281,7 +280,6 @@ a{
 .h5{
   font-size :20px
 }
-
 .background{
   background-size: cover;
   border: 1px solid ;
@@ -322,19 +320,15 @@ a{
   background-color: #151515;
   padding:0%;
   margin: 0px;
-
 }
 .center {
   text-align: center; 
 }
 .center-height{
-  display: flex;
-  
+  display: flex;  
   justify-content: center;
   align-items: center;
-
 }
-
 .back1{
   background-image: url("../img/1.jpg");
   background-size: cover
@@ -388,12 +382,11 @@ a{
   background-image: url("../img/14.jpg");
   background-size: cover
 }
+
 .loginback{
   background-image: url("../img/loginback.jpg");
   background-size: cover
-
 }
-
 
 .coach1{
   background-image: url("../img/coach3.jpg");
@@ -423,10 +416,6 @@ a{
   background-size: cover;
 }
 
-
-
-
-
 .parallax-galery {
   background-image: url("../img/77.jpg");
   min-height: 300px; 
@@ -435,13 +424,13 @@ a{
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-} 
+}
+
 .myback{
   border-top : 4px solid;
   border-bottom: 4px solid;
   border-image-source:#000; 
   border-image-slice: 1; 
-
 }
 .myback:hover{
   border-image-source:linear-gradient(135deg, #00b09b, #96c93d); 
@@ -487,10 +476,10 @@ a{
   background-color: rgba(0,0,0,0.3)
  
 }
-
 .middle-height{
   vertical-align: middle;
 }
+
 .height{
   height: 360px
 }
@@ -504,27 +493,28 @@ a{
   border: 1.5px solid #000;
 }
 
-
 .hov{
   background:linear-gradient(135deg#00b09b00,#96c93d00);
-  transition: 5s;
 }
 .hov:hover{
-  background:linear-gradient(135deg, #00b09b99, #96c93d99); 
+  background:linear-gradient(135deg, #46d3c299, #96c93d99); 
 }
-.hov-black:hover .show-on-hover{
+
+.hov:hover .show-on-hover{
   display: block;
 }
 .show-on-hover{
   display: none;
 }
-
 .hov-black:hover{
   background:rgba(0,0,0,0.7) 
 }
-.hov:hover .show-on-hover{
+.hov-black:hover .show-on-hover{
   display: block;
 }
+
+
+
 .mid{
   position: relative;
   top:50%;
@@ -562,7 +552,6 @@ a{
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
 }
 
@@ -592,6 +581,9 @@ a{
   text-decoration: none;
   cursor: pointer;
 }
+
+
+
 .max-margin{
   margin-top:120px;
 }
@@ -602,7 +594,6 @@ a{
   border-image-source:linear-gradient(135deg, #00b09b, #96c93d); 
   border-image-slice: 1;   
   overflow-x:auto;
-
 }
 .mytable {
   /* background-color:rgba(255,255,255,0.1); */
@@ -621,6 +612,7 @@ a{
 .white-div{
   background: #f8f8f8
 }
+
 tr:hover{background-color:rgba(255,255,255,0.1);}
 
 .ligtern{
@@ -637,11 +629,8 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
   background-repeat: no-repeat;
   background-size: cover;  
 }
-
-
 .overflow {
   overflow-x:auto;
-
 }
 
 @media screen and (max-width: 600px) {
@@ -678,8 +667,6 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
     list-style: none
   }
 }
-
-
 @media screen and (max-width: 720px) {
   .modal-content {
     background-color: #fefefe;
@@ -691,6 +678,7 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
     width: 300px;
   }
 }
+
 .left {
   text-align: left;
 }
@@ -711,7 +699,6 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
 .links:hover {
   color:#00b09b;
 }
-
 .links-facebook:hover{
   cursor: pointer;
   color : #4267b2
@@ -724,6 +711,7 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
   cursor: pointer;
   color :  #ff0000
 }
+
 .padding-left-right{
   padding-right: 15px;
   padding-left:15px
@@ -748,8 +736,6 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
   background-color: rgba(0,0,0,0.8);
   cursor: pointer;
 }
-
-
 .totop:hover{
   color:#00b09b;
   animation: upup 2s infinite;
@@ -763,9 +749,9 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
   }
   100%{
     font-size: 16px
-
   }
 }
+
 .input{
   width: 100%;
   background-color: rgba(0,0,0,0.1);
@@ -777,6 +763,7 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
   caret-color: #fff;
   font-size: 18px
 }
+
 .button{
   width: 100%;
   background-color: rgba(0,0,0,0.1);
@@ -787,6 +774,7 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
   caret-color: #fff;
   font-size: 18px;
 }
+
 .textarea{
   background-color: rgba(0,0,0,0.1);
   border : 1px solid #00b09b;
@@ -797,20 +785,28 @@ tr:hover{background-color:rgba(255,255,255,0.1);}
   caret-color: #fff;
   font-size: 18px
 }
+
 .magin-all{
   margin-right: 25%;
   margin-left : 25%
 }
-textarea:focus, input:focus ,select:focus{
-  outline: none;
-  
+.magin-all-small{
+  margin-right: 5%;
+  margin-left : 5%
 }
+
+textarea:focus, input:focus ,select:focus{
+  outline: none; 
+}
+
 textarea, input{
   color : #fff  
 }
+
 select{
   color: #fff
 }
+
 select > option {
   background:#151515;
   padding-top: 10px;
@@ -833,21 +829,26 @@ option:checked, option:hover {
   color: white;
   background: #488f8f repeat url("data:image/gif;base64,R0lGO...");
 }
+
+
 .bottom{
   position: absolute;
   bottom: 5px;
   text-align: center
 }
+
 .login{
   padding-top: 4%;
   padding-bottom: 5%
 }
+
 .fa{
   cursor: pointer;
 }
 .right{
   float: right
 }
+
 .table-heigt{
   height: 500px;
   overflow-x: auto
@@ -886,9 +887,7 @@ option:checked, option:hover {
   transition: 0.5s;
   padding-top: 60px;
   border-right: 2px solid #000;
-
 }
-
 .sidenav a {
   margin-top: 25px;
   padding: 8px 8px 8px 32px;
@@ -898,7 +897,6 @@ option:checked, option:hover {
   display: block;
   transition: 0.3s;
 }
-
 .sidenav .menuText {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
@@ -911,7 +909,6 @@ option:checked, option:hover {
 .sidenav a:hover {
   color: #f1f1f1;
 }
-
 .sidenav .closebtn {
   position: absolute;
   top: 0;

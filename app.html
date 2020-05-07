@@ -39,7 +39,6 @@
                     <div class="padding-smal padding-top-large only-desktop">
                         <div id="fadeImg">
                             <div id="fading-slide" class="background ba1">
-
                             </div>
                         </div>
                     </div>
@@ -99,6 +98,7 @@
         </div>
     </div>
     <div class="parallax"></div>
+    
     <div class="gradient light" id="galery">
         <div class="container">
             <div class="row padding-large">
@@ -484,12 +484,16 @@
     <div class="col-12 padding-small footer light center">
         <p>Copyright © 2020 All rights reserved | Made with love <i class="fa fa-heartbeat red" ></i> </p>
     </div>
+    
+    
+    
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <div class="" id="modal-img"></div>
         </div>
     </div>
+
     <div id="notif" class="notif">
         
     </div>
@@ -515,7 +519,7 @@
                 var msg =  document.querySelector("#msg").value 
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
+                    if (this.readyState == 4 && this.status == 200) {      
                         document.querySelector("#notif").style.display = "block"
                         document.querySelector("#notif").innerHTML = '<p class="h5">Thank you '+fullname+' we will contact you soon</p>'
                         document.querySelector("#email").value = ""
@@ -564,7 +568,6 @@
   			});
 		 }, 5000);
     });
-
     function showimage(id){
         var modal = document.getElementById("myModal");
         var span = document.getElementsByClassName("close")[0];
@@ -582,7 +585,5 @@
             }
         }
     }
- 
-
 </script>
 </html>

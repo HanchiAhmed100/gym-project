@@ -109,8 +109,12 @@
                                 </div>
                                 <div class="col-2"></div>
                             </div>
+                            <div class="col-4"></div>
+                            <div class="col-4 center ">
+                                <div id="validate"></div>
+                            </div>
+                            <div class="col-4"></div>
                         </div>
-
                     </div>
                 </div>
                 <div class="container padding-top-large-px">
@@ -165,16 +169,34 @@
                 }
             }
         };
-        console.log(user_type)
         if(user_type == 'admin'){
             xhttp.open("GET", "./service/LoadAdminBlog.php", true);
         }else{
-            console.log("ssssdd")
             xhttp.open("GET", "./service/LoadusersBlog.php", true);   
         }
         xhttp.send();
     }
 
+    function DeleteBlog(id,type){
+        document.querySelector('#validate').innerHTML = '<div class="ligtern padding"><p class="h5 light"> Confirm delete <i class="fa fa-check" onclick="Confirm('+id+',\''+type+'\')"></i> <i class="fa fa-close" onclick="close_msg()"></i> </p></div>'
+        scrollTo(0 ,document.querySelector('#validate').offsetTop-300)
+    }
+    function close_msg(){
+        document.querySelector('#validate').innerHTML = ''
+
+    }
+    function Confirm(id,type) {
+        console.log(type)
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.querySelector('#validate').innerHTML = ''
+                LoadBlog(type)
+            }
+        }
+        xhttp.open("GET", "./service/DeleteBlogArticle.php?id="+id, true);
+        xhttp.send();
+    }
     document.addEventListener("DOMContentLoaded", function(){
         document.getElementById('blog-upload').addEventListener("submit", function(e){
             e.preventDefault()

@@ -8,6 +8,7 @@
     $blog = new blog();	
     $myblog = $blog->load_admin_blog();
     echo '<p class="h4 light center">Articles Added by Admins !</p>';
+    $admin = "admin";
     while ($b = $myblog->fetch()) {
         echo'
         <div class="row">
@@ -20,6 +21,7 @@
                     <div class="col-7" id="my-height">
                         <div class="row">
                             <div class="col-12">
+                                <a class="right" onclick="DeleteBlog('.$b['id'].',\''.$admin.'\')"><i class="fa fa-close"></i></a>
                                     <br />
                                 <p class="h5 secondary-color">'.$b['fullname'].' </p>
                                 <p class="muted-color">'.$b['created_at'].'</p>

@@ -11,7 +11,7 @@
     else{
         $class = "col-6";
     }
-
+    echo'<div class="row">';
     while ($t = $team->fetch()) {
         $str = $t['pic'];
         echo'
@@ -35,6 +35,7 @@
             </div>
         ';
     }
+    echo '</div>'
 
 ?>
 

@@ -8,6 +8,7 @@
     $blog = new blog();	
     $myblog = $blog->load_users_blog();
     echo '<p class="h4 light center">Articles Added by Users !</p>';
+    echo $users = 'user';
     while ($b = $myblog->fetch()) {
         echo'
         <div class="row">
@@ -21,6 +22,8 @@
                         <div class="row">
                             <div class="col-2"> <img src="'.$b['picture'].'" class="round-profile"/></div>
                             <div class="col-10">
+                            <a class="right"><i class="fa fa-close"></i></a>
+                            <a class="magin-all-small right" onclick="DeleteBlog('.$b['id'].',\''.$users.'\')"><i class="fa fa-check"></i></a>
                                     <br />
                                 <p class="h5 secondary-color">'.$b['fullname'].' </p>
                                 <p class="muted-color">'.$b['created_at'].'</p>
