@@ -52,7 +52,7 @@
                     }
                 }
             };
-            xhttp.open("POST", "./service/VerifToken.php", true);
+            xhttp.open("POST", "http://my-gym.scienceontheweb.net/service/VerifToken.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             str = "id="+localStorage.getItem("id")+"&token="+localStorage.getItem("token")
             xhttp.send(str);
@@ -75,7 +75,7 @@
                 }
             }
         };
-        xhttp.open("GET", "./service/LoadBlog.php", true);
+        xhttp.open("GET", "http://my-gym.scienceontheweb.net/service/LoadBlog.php", true);
         xhttp.send();
     }
 </script>

@@ -528,7 +528,7 @@
                         setTimeout(function(){document.querySelector("#notif").style.display = "none"}, 10000);
                     }
                 }
-                xhttp.open("POST", "./service/AddMsg.php", true);
+                xhttp.open("POST", "http://my-gym.scienceontheweb.net/service/AddMsg.php", true);
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 str = "email="+email+"&fullname="+fullname+"&msg="+msg
                 xhttp.send(str);  

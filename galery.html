@@ -72,7 +72,7 @@
                 <div class="col-6">
                     <div class="padding-large ligtern  light">
                         <div id="add-form">
-                            <form id="gallery-upload" action="./service/UploadGaleryPic.php" method="post" enctype="multipart/form-data">
+                            <form id="gallery-upload" action="http://my-gym.scienceontheweb.net/service/UploadGaleryPic.php" method="post" enctype="multipart/form-data">
                                 <p class="h5 center line"> Add gallery image </p> <hr /> <br />
                                 <p class="padding-bottom-x-small">Title : </p>
                                 <input type="text" placeholder="Title" name="title" class="input"  id="title" > 
@@ -89,7 +89,7 @@
                             </form>
                         </div>
                         <div id="update-form">
-                            <form id="gallery-upload-update" action="./service/UpdateGalleryPic.php" method="post" enctype="multipart/form-data">
+                            <form id="gallery-upload-update" action="http://my-gym.scienceontheweb.net/service/UpdateGalleryPic.php" method="post" enctype="multipart/form-data">
                                 <p class="h5 center line"> Update gallery image  </p> <hr /> <br />
                                 <p class="padding-bottom-x-small">Title : </p>
                                 <input type="text" placeholder="Title" name="title" class="input"  id="UpdateTitle" > 
@@ -146,7 +146,7 @@
                     }
                 }
             };
-            xhttp.open("POST", "./service/VerifToken.php", true);
+            xhttp.open("POST", "http://my-gym.scienceontheweb.net/service/VerifToken.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             str = "id="+localStorage.getItem("id")+"&token="+localStorage.getItem("token")
             xhttp.send(str);
@@ -167,7 +167,7 @@
                 }
             }
         };
-        xhttp.open("GET", "./service/LoadGallery.php", true);
+        xhttp.open("GET", "http://my-gym.scienceontheweb.net/service/LoadGallery.php", true);
         xhttp.send();
     }
     function UpdateGalImg(id,title,desc){
@@ -194,7 +194,7 @@
                     LoadGallery()
             }
         }
-        xhttp.open("GET", "./service/DeleteGalleryImg.php?id="+id, true);
+        xhttp.open("GET", "http://my-gym.scienceontheweb.net/service/DeleteGalleryImg.php?id="+id, true);
         xhttp.send();
     }
     function close_galery_msg(){

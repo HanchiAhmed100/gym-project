@@ -123,7 +123,7 @@
                     }
                 }
             };
-            xhttp.open("POST", "./service/VerifToken.php", true);
+            xhttp.open("POST", "http://my-gym.scienceontheweb.net/service/VerifToken.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             str = "id="+localStorage.getItem("id")+"&token="+localStorage.getItem("token")
             xhttp.send(str);
@@ -137,7 +137,7 @@
                 document.getElementById("load").innerHTML = this.responseText
             }
         };
-        xhttp.open("GET", "./service/GetPlanning.php", true);
+        xhttp.open("GET", "http://my-gym.scienceontheweb.net/service/GetPlanning.php", true);
         xhttp.send();
     }
     function AddClass() {
@@ -157,7 +157,7 @@
                     LoadPlannig() 
                 }
             }
-            xhttp.open("POST", "./service/setPlanning.php", true);
+            xhttp.open("POST", "http://my-gym.scienceontheweb.net/service/setPlanning.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             str = "class="+classe+"&day="+day+"&hour="+hour+"&gym="+gym
             xhttp.send(str);

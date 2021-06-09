@@ -98,7 +98,7 @@
                     }
                 }
             };
-            xhttp.open("POST", "./service/VerifToken.php", true);
+            xhttp.open("POST", "http://my-gym.scienceontheweb.net/service/VerifToken.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             str = "id="+localStorage.getItem("id")+"&token="+localStorage.getItem("token")
             xhttp.send(str);
@@ -118,7 +118,7 @@
                 document.querySelector("#fullname").value = name
             }
         };
-        xhttp.open("GET", "./service/LoadOneUser.php?id="+id+"", true);
+        xhttp.open("GET", "http://my-gym.scienceontheweb.net/service/LoadOneUser.php?id="+id+"", true);
         xhttp.send();
     }
     function VerifPaiment(){
@@ -144,7 +144,7 @@
                     LoadUsers() 
                 }
             }
-            xhttp.open("POST", "./service/AddPaiment.php", true);
+            xhttp.open("POST", "http://my-gym.scienceontheweb.net/service/AddPaiment.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             str = "id="+id+"&month="+month+"&offer="+offer
             xhttp.send(str);        

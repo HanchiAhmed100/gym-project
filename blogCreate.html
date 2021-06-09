@@ -74,7 +74,7 @@
                         <div class="col-12">
                             <div class="padding-large ligtern  light">
                                 <div id="add-form">
-                                    <form id="blog-upload" action="./service/AddBlog.php" method="post" enctype="multipart/form-data">
+                                    <form id="blog-upload" action="http://my-gym.scienceontheweb.net/service/AddBlog.php" method="post" enctype="multipart/form-data">
                                         <p class="h5 center line"> Add blog Article  </p> <hr /> <br />
                                         <p class="padding-bottom-x-small">Title : </p>
                                         <input type="text" placeholder="Title" name="title" class="input"  id="title" > 
@@ -147,7 +147,7 @@
                     }
                 }
             };
-            xhttp.open("POST", "./service/VerifToken.php", true);
+            xhttp.open("POST", "http://my-gym.scienceontheweb.net/service/VerifToken.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             str = "id="+localStorage.getItem("id")+"&token="+localStorage.getItem("token")
             xhttp.send(str);
@@ -170,9 +170,9 @@
             }
         };
         if(user_type == 'admin'){
-            xhttp.open("GET", "./service/LoadAdminBlog.php", true);
+            xhttp.open("GET", "http://my-gym.scienceontheweb.net/service/LoadAdminBlog.php", true);
         }else{
-            xhttp.open("GET", "./service/LoadusersBlog.php", true);   
+            xhttp.open("GET", "http://my-gym.scienceontheweb.net/service/LoadusersBlog.php", true);   
         }
         xhttp.send();
     }
@@ -194,7 +194,7 @@
                 LoadBlog(type)
             }
         }
-        xhttp.open("GET", "./service/DeleteBlogArticle.php?id="+id, true);
+        xhttp.open("GET", "http://my-gym.scienceontheweb.net/service/DeleteBlogArticle.php?id="+id, true);
         xhttp.send();
     }
     document.addEventListener("DOMContentLoaded", function(){

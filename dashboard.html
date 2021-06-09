@@ -150,7 +150,7 @@
                     }
                 }
             };
-            xhttp.open("POST", "./service/VerifToken.php", true);
+            xhttp.open("POST", "http://my-gym.scienceontheweb.net/service/VerifToken.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             str = "id="+localStorage.getItem("id")+"&token="+localStorage.getItem("token")
             xhttp.send(str);
@@ -207,7 +207,7 @@
                                 }, 5000);
                             }
                         };
-                        xhttp.open("POST", "./service/AddUser.php", true);
+                        xhttp.open("POST", "http://my-gym.scienceontheweb.net/service/AddUser.php", true);
                         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                         str = "fullname="+fullname+"&email="+email+"&sexe="+sexe+"&age="+age+"&password="+password
                         xhttp.send(str);
@@ -233,7 +233,7 @@
                 document.getElementById("load").innerHTML = this.responseText
             }
         };
-        xhttp.open("GET", "./service/LoadUsers.php?type="+type, true);
+        xhttp.open("GET", "http://my-gym.scienceontheweb.net/service/LoadUsers.php?type="+type, true);
         xhttp.send();
     }
 
@@ -256,7 +256,7 @@
                 document.querySelector("#name").innerHTML = 'User deleted'
             }
         };
-        xhttp.open("GET", "./service/DeleteUser.php?id="+id+"&type="+mtype, true);
+        xhttp.open("GET", "http://my-gym.scienceontheweb.net/service/DeleteUser.php?id="+id+"&type="+mtype, true);
         xhttp.send();        
     }
     function inactive(type) {
@@ -288,7 +288,7 @@
                     document.getElementById("search-result").innerHTML = this.responseText
                 }
             };
-            xhttp.open("GET", "./service/SerachClient.php?name="+serach, true);
+            xhttp.open("GET", "http://my-gym.scienceontheweb.net/service/SerachClient.php?name="+serach, true);
             xhttp.send(); 
         }
     }

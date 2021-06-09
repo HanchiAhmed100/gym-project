@@ -71,7 +71,7 @@
                 <div class="col-6">
                     <div class="padding-large ligtern  light">
                         <div id="add-form">
-                            <form id="ajax-upload" action="./service/UploadCoachPic.php" method="post" enctype="multipart/form-data">
+                            <form id="ajax-upload" action="http://my-gym.scienceontheweb.net/service/UploadCoachPic.php" method="post" enctype="multipart/form-data">
                                 <p class="h5 center line"> Add coach </p> <hr /> <br />
                                 <p class="padding-bottom-x-small">Full Name : </p>
                                 <input type="text" placeholder="class" name="name" class="input"  id="name" > 
@@ -86,7 +86,7 @@
                             </form>
                         </div>
                         <div id="update-form">
-                            <form id="pic-upload" action="./service/UpdateCoachPic.php" method="post" enctype="multipart/form-data">
+                            <form id="pic-upload" action="http://my-gym.scienceontheweb.net/service/UpdateCoachPic.php" method="post" enctype="multipart/form-data">
                                 <p class="h5 center line"> Update coach </p> <hr /> <br />
                                 <p class="padding-bottom-x-small">Full Name : </p>
                                 <input type="text" placeholder="class" name="name" class="input"  id="Upname" > 
@@ -144,7 +144,7 @@
                     }
                 }
             };
-            xhttp.open("POST", "./service/VerifToken.php", true);
+            xhttp.open("POST", "http://my-gym.scienceontheweb.net/service/VerifToken.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             str = "id="+localStorage.getItem("id")+"&token="+localStorage.getItem("token")
             xhttp.send(str);
@@ -159,7 +159,7 @@
                 document.getElementById("load").innerHTML = this.responseText
             }
         };
-        xhttp.open("GET", "./service/LoadTeamPicDashboard.php", true);
+        xhttp.open("GET", "http://my-gym.scienceontheweb.net/service/LoadTeamPicDashboard.php", true);
         xhttp.send();
     }
     function Update(id,name,spe){
@@ -181,7 +181,7 @@
                 LoadCoach()
             }
         }
-        xhttp.open("GET", "./service/DeleteCoach.php?id="+id, true);
+        xhttp.open("GET", "http://my-gym.scienceontheweb.net/service/DeleteCoach.php?id="+id, true);
         xhttp.send();
     }
     function close_coach_msg(){

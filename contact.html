@@ -62,7 +62,7 @@
                     }
                 }
             };
-            xhttp.open("POST", "./service/VerifToken.php", true);
+            xhttp.open("POST", "http://my-gym.scienceontheweb.net/service/VerifToken.php", true);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             str = "id="+localStorage.getItem("id")+"&token="+localStorage.getItem("token")
             xhttp.send(str);
@@ -82,7 +82,7 @@
                 LoadMessges()
             }
         }
-        xhttp.open("GET", "./service/DeleteContactMessage.php?id="+id, true);
+        xhttp.open("GET", "http://my-gym.scienceontheweb.net/service/DeleteContactMessage.php?id="+id, true);
         xhttp.send();
     }
     function close_delete_msg(){
@@ -96,7 +96,7 @@
                 document.getElementById("load").innerHTML = this.responseText
             }
         };
-        xhttp.open("GET", "./service/LoadMsg.php", true);
+        xhttp.open("GET", "http://my-gym.scienceontheweb.net/service/LoadMsg.php", true);
         xhttp.send();
     }
 </script>
